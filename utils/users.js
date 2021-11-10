@@ -1,10 +1,10 @@
-import { db } from "./firebase";
-import { collection, getDocs } from 'firebase/firestore/lite';
+import { firestore } from "./firebase";
 
 const getUsers = async () => {
-    const usersCol = collection(db, 'users');
-    const usersSnapshot = await getDocs(usersCol);
-    return usersSnapshot.docs.map(doc => {return doc.data()});
+  const snapshot = await firestore.collection("users").get();
+  return snapshot.docs.map(doc => {
+      return doc.data()
+  })
 };
 
-export { getUsers }
+export { getUsers };
