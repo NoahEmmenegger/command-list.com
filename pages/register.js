@@ -6,6 +6,7 @@ export default function Home() {
   const router = useRouter();
 
   const signUp = ({ email, pass }) => {
+    console.log(email)
     auth.signup(email, pass)
       .then(() => {
         console.log('Success')
@@ -16,5 +17,5 @@ export default function Home() {
       });
   };
 
-  return <input type="submit" onClick={signUp} />;
+  return <input type="submit" onClick={() => {signUp({email: 'testasdf@gmail.com', pass: 'test1234'})}} />;
 }

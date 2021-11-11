@@ -80,6 +80,7 @@ function useProvideAuth() {
 
     return {
         userId: user && user.uid,
+        user: user,
         signin,
         signup,
         signout,
