@@ -1,4 +1,4 @@
-import 'tailwindcss/tailwind.css'
+import '../style/index.css'
 import {ProvideAuth} from '../utils/auth'
 import Layout from '../component/Layout'
 

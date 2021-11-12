@@ -8,7 +8,7 @@ export default function Footer() {
                 <div>
                     logo
                 </div>
-                <div className="invite_footer bg-primary">
+                <div className="invite_footer">
                     <h2>general_question</h2>
                     <div>
                         <Link href="/">Link</Link>

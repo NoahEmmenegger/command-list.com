@@ -1,21 +1,22 @@
 import { useAuth } from '../utils/auth';
 import { useRouter } from 'next/router';
+import Auth from '../component/Auth'
 
 export default function Home() {
   const auth = useAuth();
   const router = useRouter();
 
-  const signUp = ({ email, pass }) => {
+  const signIn = ({ email, pass }) => {
     console.log(email)
     auth.signin(email, pass)
       .then(() => {
         console.log('Success')
-        //router.push('/deals');
+        router.push('/');
       })
       .catch((error) => {
         console.log('An error occurred.')
       });
   };
 
-  return <input type="submit" onClick={() => {signUp({email: 'testasdf@gmail.com', pass: 'test1234'})}} />;
+  return <Auth onclick={signIn} />;
 }

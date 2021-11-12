@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  a {
+    @apply underline;
+  }
+
+  .btn {
+    @apply block text-white uppercase text-lg p-2 rounded bg-primary cursor-pointer;
+  }
+}

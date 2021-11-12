@@ -10,10 +10,10 @@ export default function Layout({ children }) {
 
         <nav>{user ? user.email : 'You are not logged in!'}</nav>
       </header>
-      <main className="flex flex-col items-center justify-center min-h-screen py-2">
+      <main className="flex flex-col items-center justify-center py-72">
         {children}
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }
