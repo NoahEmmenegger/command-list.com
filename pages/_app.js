@@ -1,10 +1,14 @@
-import '../styles/globals.css'
+import 'tailwindcss/tailwind.css'
 import {ProvideAuth} from '../utils/auth'
+import Layout from '../component/Layout'
+
 
 function MyApp({ Component, pageProps }) {
   return (
     <ProvideAuth>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ProvideAuth>
   )
 }
