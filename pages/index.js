@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { getUsers } from '../utils/users'
+import { getUsers, getUserById } from '../utils/users'
 import { useEffect } from 'react'
+import { getPages } from '../utils/pages'
 
 export default function Home() {
   useEffect(() => {
     getUsers().then(console.log)
+    getPages().then(console.log)
   })
 
   return (
@@ -20,7 +22,8 @@ export default function Home() {
         <ul>
           <li><Link href="/login">Login</Link></li>
           <li><Link href="/register">Register</Link></li>
-          <li><Link href="/create">Create App</Link></li>
+          <li><Link href="/dashboard">Dashboard</Link></li>
+          <li><Link href="/create">Create Page</Link></li>
         </ul>
       </div>
     </div>

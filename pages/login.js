@@ -11,7 +11,7 @@ export default function Home() {
     auth.signin(email, pass)
       .then(() => {
         console.log('Success')
-        router.push('/');
+        router.push('/dashboard');
       })
       .catch((error) => {
         console.log('An error occurred.')

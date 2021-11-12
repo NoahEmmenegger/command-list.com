@@ -7,4 +7,9 @@ const getUsers = async () => {
   })
 };
 
-export { getUsers };
+const getUserById = async (userId) => {
+  return await (await firestore.collection("users").where('userUid', '==', userId).limit(1).get()).docs[0].data();
+
+};
+
+export { getUsers, getUserById };
