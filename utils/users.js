@@ -8,8 +8,14 @@ const getUsers = async () => {
 };
 
 const getUserById = async (userId) => {
-  return await (await firestore.collection("users").where('userUid', '==', userId).limit(1).get()).docs[0].data();
+  const user = await firestore.collection("users").where('userUid', '==', userId).limit(1).get();
+  console.log(userId)
+  return user.docs[0].data();
 
 };
 
-export { getUsers, getUserById };
+const addNewUser = async (email, uid) => {
+  return await firestore.collection("users").add({email, userUid: uid})
+}
+
+export { getUsers, getUserById, addNewUser };

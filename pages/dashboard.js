@@ -18,7 +18,7 @@ export default function Dashboard() {
     return(
         <div>
             <Link href="/">Back</Link>
-            <h1>Hello {user?user.name:'loading...'}</h1>
+            <h1>Hello {user?user.email:'loading...'}</h1>
         </div>
     )
 }
