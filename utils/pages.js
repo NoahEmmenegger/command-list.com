@@ -15,6 +15,13 @@ const getPages = async () => {
   })
 };
 
+const getPageSlugs = async () => {
+  const snapshot = await firestore.collection("pages").get();
+  return snapshot.docs.map(doc => {
+    return doc.id
+  })
+}
+
 const createPage = async (ownerUid, title, description) => {
   console.log(ownerUid)
   let doesExist = (await firestore.collection('pages').doc(title).get()).exists
@@ -32,4 +39,4 @@ const createPage = async (ownerUid, title, description) => {
 
 }
 
-export { getPageBySlug, getPages, createPage };
+export { getPageBySlug, getPages, getPageSlugs, createPage };

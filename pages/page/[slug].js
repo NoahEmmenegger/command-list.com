@@ -1,17 +1,11 @@
 import { useRouter } from 'next/router'
 import Loading from '../../component/Loading'
-import { getPageBySlug } from '../../utils/pages'
+import { getPageBySlug, getPageSlugs } from '../../utils/pages'
 import Custom404 from '../404'
 
 export default function Page({ page }) {
 
-    console.log(page)
-
-    if(page === undefined) {
-        return <Loading/>
-    }
-
-    if(Object.keys(page).length === 0) {
+    if(page === undefined || Object.keys(page).length === 0) {
         return <Custom404/>
     }
 
@@ -22,7 +16,7 @@ export default function Page({ page }) {
     )
 }
 
-export async function getStaticProps({ params, previewData }) {
+export async function getStaticProps({ params }) {
     let page = await getPageBySlug(params.slug)
     return {
         props: {
@@ -32,7 +26,7 @@ export async function getStaticProps({ params, previewData }) {
 }
 
 export async function getStaticPaths() {
-    const documents = ['epicfreegames', 'test']
+    const documents = await getPageSlugs()
     return {
       paths: documents.map(doc => `/page/${doc}`),
       fallback: true,
