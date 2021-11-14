@@ -7,10 +7,8 @@ export default function Home() {
   const router = useRouter();
 
   const signIn = ({ email, pass }) => {
-    console.log(email)
     auth.signin(email, pass)
       .then(() => {
-        console.log('Success')
         router.push('/dashboard');
       })
       .catch((error) => {

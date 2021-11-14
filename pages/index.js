@@ -1,15 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { getUsers, getUserById } from '../utils/users'
-import { useEffect } from 'react'
-import { getPages } from '../utils/pages'
 
 export default function Home() {
-  useEffect(() => {
-    getUsers().then(console.log)
-    getPages().then(console.log)
-  })
-
   return (
     <div>
       <Head>

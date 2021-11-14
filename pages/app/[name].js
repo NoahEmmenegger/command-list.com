@@ -1,6 +1,4 @@
 import { useRouter } from 'next/router'
-import { func } from 'prop-types'
-import { async } from 'regenerator-runtime'
 
 export default function List({ list }) {
     const router = useRouter()
@@ -16,7 +14,6 @@ export default function List({ list }) {
 }
 
 export async function getServerSideProps({ params }) {
-    console.log(params)
     const data = {
         'epic': {
             name: 'epicfreegames'
@@ -29,8 +26,6 @@ export async function getServerSideProps({ params }) {
         }
     }
 
-
-    console.log(data[params.name])
     return {
         props: { list: data[params.name].name}
     }

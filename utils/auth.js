@@ -2,7 +2,6 @@ import React, {useState, useEffect, useContext, createContext} from 'react';
 import 'firebase/auth';
 
 import { firebase } from './firebase';
-import { getUserById } from './users';
 
 const authContext = createContext();
 
@@ -67,10 +66,6 @@ function useProvideAuth() {
             });
     };
 
-    const getFireUser = async () => {
-        return user?await getUserById(user.uid):null
-    }
-
     useEffect(() => {
         const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -91,7 +86,6 @@ function useProvideAuth() {
         signout,
         sendPasswordResetEmail,
         confirmPasswordReset,
-        getFireUser
     };
 }
 
