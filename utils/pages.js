@@ -15,13 +15,14 @@ const getPages = async () => {
   })
 };
 
-const createPage = async (ownerUid) => {
+const createPage = async (ownerUid, title, description) => {
   console.log(ownerUid)
-  let doesExist = (await firestore.collection('pages').doc('epicfreegames').get()).exists
+  let doesExist = (await firestore.collection('pages').doc(title).get()).exists
   if (!doesExist) {
-    firestore.collection('pages').doc('epicfreegames').set({
+    firestore.collection('pages').doc(title).set({
       ownerUid,
-      title: "EpicFreeGames 2",
+      title: title,
+      description: description,
       sections: []
     })
     return true;

@@ -1,18 +1,18 @@
 import { useAuth } from "../utils/auth"
 import { createPage } from "../utils/pages"
+import Create from '../component/Create'
 
-export default function Create() {
-    const auth = useAuth()
+export default function CreateNewPage() {
+    const auth = useAuth();
 
-    const create = () => {
-        createPage(auth.userId).then(wasCreated => {
+    const create = ({ title, description }) => {
+        createPage(auth.userId, title, description)
+        .then(wasCreated => {
             console.log(wasCreated)
         })
+        .catch((error) => {
+            console.log('An error occurred.')
+        });
     }
-    return (
-        <div>
-            Hier kommt das create form
-            <button onClick={create}>Create</button>
-        </div>
-    )
+    return <Create onclick={create} />;
 }
