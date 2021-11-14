@@ -1,5 +1,13 @@
 import { firestore } from "./firebase";
 
+const getPageBySlug = async (slug) => {
+  const page = await (await firestore.collection('pages').doc(slug).get()).data();
+  if(!page) {
+    return {}
+  }
+  return page;
+}
+
 const getPages = async () => {
   const snapshot = await firestore.collection("pages").get();
   return snapshot.docs.map(doc => {
@@ -23,4 +31,4 @@ const createPage = async (ownerUid) => {
 
 }
 
-export { getPages, createPage };
+export { getPageBySlug, getPages, createPage };
