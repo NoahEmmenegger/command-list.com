@@ -26,10 +26,10 @@ export function defaultTemplate(page) {
             <h1 className="text-8xl text-center font-bold">{page.title}</h1>
             {page.sections.map(section => {
                 return (
-                    <Section template={page.template} key={section.uid} title={section.title}>
+                    <Section key={section.id} template={page.template} section={section}>
                         {section.commands.map(cmd => {
                             return (
-                                <Command key={cmd.title} template={page.template} title={cmd.title} description={cmd.description}/>)
+                                <Command key={cmd.id} template={page.template} command={cmd}/>)
                         })}
                     </Section>
                 )

@@ -13,6 +13,7 @@ const getPageBySlug = async (slug) => {
 const DocumentArrayReferenceToJson = async reference => {
   let promises = await reference.map(async reference => {
     let section = (await reference.get()).data()
+    section.id = reference.id
     if(section.commands) {
       section.commands = await DocumentArrayReferenceToJson(section.commands)
     }

@@ -1,20 +1,20 @@
-export default function Command({ template, title, description }) {
+export default function Command({ template, command }) {
     switch (template) {
         case 'light':
             return (<div>test</div>)
 
         default:
-            return defaultTemplate(title, description)
+            return defaultTemplate(command)
     }
 }
 
-const defaultTemplate = (title, description) => {
+const defaultTemplate = (command) => {
     return (
         <div className="flex p-5 m-2 border-b-2 border-lightgray">
             <p className="w-60 text-2xl">
-                <strong>{title}</strong>
+                <strong>{command.title}</strong>
             </p>
-            <span className="text-lightgray">{description}</span>
+            <span className="text-lightgray">{command.description}</span>
         </div>
     )
 }
