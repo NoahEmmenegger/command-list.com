@@ -1,7 +1,7 @@
-import Command from '../../component/page/Command'
-import Section from '../../component/Page/Section'
-import { getPageBySlug, getPageSlugs } from '../../utils/pages'
-import Custom404 from '../404'
+import Command from '../../../component/page/Command'
+import Section from '../../../component/Page/Section'
+import { getPageBySlug, getPageSlugs } from '../../../utils/pages'
+import Custom404 from '../../404'
 
 export default function Page({ page }) {
 
