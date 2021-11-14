@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import Loading from '../../component/Loading'
+import Command from '../../component/page/Command'
+import Section from '../../component/Page/Section'
 import { getPageBySlug, getPageSlugs } from '../../utils/pages'
 import Custom404 from '../404'
 
@@ -9,9 +9,39 @@ export default function Page({ page }) {
         return <Custom404/>
     }
 
-    return (
+    page.template = page.template?page.template:'default'
+
+    switch (page.template) {
+        case 'light':
+            return lightTemplate(page)
+
+        default:
+            return defaultTemplate(page)
+    }
+}
+
+export function defaultTemplate(page) {
+    return(
         <div>
-            name {page.title}
+            {page.title}
+            {page.sections.map(section => {
+                return (
+                    <Section template={page.template} key={section.uid} title={section.title}>
+                        {section.commands.map(cmd => {
+                            return (
+                                <Command key={cmd.title} template={page.template} title={cmd.title} description={cmd.description}/>)
+                        })}
+                    </Section>
+                )
+            })}
+        </div>
+    )
+}
+
+export function lightTemplate(page) {
+    return(
+        <div>
+            todo: implement
         </div>
     )
 }

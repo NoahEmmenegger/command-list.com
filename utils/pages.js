@@ -5,7 +5,21 @@ const getPageBySlug = async (slug) => {
   if(!page) {
     return {}
   }
+
+  page.sections = await DocumentArrayReferenceToJson(page.sections)
   return page;
+}
+
+const DocumentArrayReferenceToJson = async reference => {
+  let promises = await reference.map(async reference => {
+    let section = (await reference.get()).data()
+    if(section.commands) {
+      section.commands = await DocumentArrayReferenceToJson(section.commands)
+    }
+    return section
+  })
+
+  return await Promise.all(promises)
 }
 
 const getPages = async () => {
