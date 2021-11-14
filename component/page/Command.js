@@ -10,11 +10,11 @@ export default function Command({ template, command }) {
 
 const defaultTemplate = (command) => {
     return (
-        <div className="flex p-5 m-2 border-b-2 border-lightgray">
-            <p className="w-60 text-2xl">
+        <div className="">
+            <p className="">
                 <strong>{command.title}</strong>
             </p>
-            <span className="text-lightgray">{command.description}</span>
+            <span className="">{command.description}</span>
         </div>
     )
 }

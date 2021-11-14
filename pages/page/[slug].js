@@ -22,8 +22,8 @@ export default function Page({ page }) {
 
 export function defaultTemplate(page) {
     return(
-        <div className="bg-darkgray text-white">
-            <h1 className="text-8xl text-center font-bold">{page.title}</h1>
+        <div className="bg-darkgray">
+            <h1 className="text-8xl text-center font-bold text-white">{page.title}</h1>
             {page.sections.map(section => {
                 return (
                     <Section key={section.id} template={page.template} section={section}>

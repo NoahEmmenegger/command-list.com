@@ -3,6 +3,8 @@ import {ProvideAuth} from '../utils/auth'
 import Layout from '../component/Layout'
 import { useRouter } from 'next/router'
 
+import '../style/CommandList.css'
+
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
