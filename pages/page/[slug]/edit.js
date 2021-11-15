@@ -29,6 +29,11 @@ export default function Edit() {
     }
 
     return (
-        <div>Edit {page.title}</div>
+        <div>
+            <p>Edit {page.title}</p>
+            <div>
+                <button className="btn">+ Add Section</button>
+            </div>
+        </div>
     )
 }
