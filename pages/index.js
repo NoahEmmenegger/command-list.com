@@ -18,6 +18,7 @@ export default function Home() {
             <Link href="login"><a className="btn mt-10 text-lg px-8" style={{'width': 'fit-content'}}>Start now</a></Link>
           </div>
           <div className="w-full h-full relative p-10">
+          {/* https://www.freepik.com/free-vector/happy-freelancer-with-computer-home-young-man-sitting-armchair-using-laptop-chatting-online-smiling-vector-illustration-distance-work-online-learning-freelance_10172825.htm */}
             <Image src="/bg.jpg" layout="fill" objectFit="contain" />
           </div>
         </div>
