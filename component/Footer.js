@@ -8,6 +8,7 @@ export default function Footer() {
                 <div>
                     logo
                 </div>
+                <a href="https://www.freepik.com/vectors/people">People vector created by pch.vector - www.freepik.com</a>
                 <div className="invite_footer">
                     <h2>general_question</h2>
                     <div>
