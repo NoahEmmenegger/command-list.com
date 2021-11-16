@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -10,13 +11,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
-        <ul>
-          <li><Link href="/login">Login</Link></li>
-          <li><Link href="/register">Register</Link></li>
-          <li><Link href="/dashboard">Dashboard</Link></li>
-          <li><Link href="/create">Create Page</Link></li>
-        </ul>
+      <div className="h-screen p-10 pt-0">
+        <div className="flex h-5/6">
+          <div className="w-3/5 align-middle m-auto pl-10">
+            <h1 className="text-6xl">Create command pages for free</h1>
+            <Link href="login"><a className="btn mt-10 text-lg px-8" style={{'width': 'fit-content'}}>Start now</a></Link>
+          </div>
+          <div className="w-full h-full relative p-10">
+            <Image src="/bg.jpg" layout="fill" objectFit="contain" />
+          </div>
+        </div>
+        <div className="h-10">
+          Trusted by
+        </div>
       </div>
     </div>
   )
