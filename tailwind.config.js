@@ -11,7 +11,10 @@ module.exports = {
         darkgray: "#212529",
         lightgray: "#f0f0f0",
         normalgray: "#e6e6e6"
-      }
+      },
+      dropShadow: {
+        'white': '0 35px 35px rgba(255 255 255, 1)',
+      },
     },
   },
   variants: {
