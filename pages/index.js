@@ -19,7 +19,7 @@ export default function Home() {
           </div>
           <div className="w-full h-full relative p-10">
           {/* https://www.freepik.com/free-vector/happy-freelancer-with-computer-home-young-man-sitting-armchair-using-laptop-chatting-online-smiling-vector-illustration-distance-work-online-learning-freelance_10172825.htm */}
-            <Image alt='' src="/bg.jpg" height={1250} width={1967.25} objectFit="contain" />
+            <Image alt='' src="/bg_men_computer.svg" height={1250} width={1967.25} objectFit="contain" />
           </div>
         </div>
         <div className="h-10 px-80 mt-16">
