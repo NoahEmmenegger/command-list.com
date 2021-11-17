@@ -16,4 +16,8 @@
   .btn {
     @apply block text-white uppercase p-4 font-bold rounded-full bg-primary cursor-pointer hover:bg-primaryDark;
   }
+
+  .card {
+    @apply bg-white
+  }
 }

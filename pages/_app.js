@@ -16,6 +16,15 @@ function MyApp({ Component, pageProps }) {
       </div>
     )
   }
+
+  if(router.pathname === '/dashboard') {
+    return (
+      <ProvideAuth>
+         <Component {...pageProps} />
+      </ProvideAuth>
+    )
+  }
+
   return (
     <ProvideAuth>
       <Layout>
