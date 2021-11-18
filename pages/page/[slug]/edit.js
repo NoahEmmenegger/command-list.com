@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import DashboardLayout from '../../../component/dashboard/Layout'
 import Loading from '../../../component/Loading'
 import { useAuth } from '../../../utils/auth'
 import { getPageBySlug } from '../../../utils/pages'
@@ -28,12 +29,24 @@ export default function Edit() {
         return <Custom404 />
     }
 
+    const menuItems = [
+        {
+            image: '/icons/edit.svg',
+            title: 'Edit',
+            href: ''
+        },
+        {
+            image: '/icons/edit.svg',
+            title: 'Analythics',
+            href: ''
+        },
+    ]
+
     return (
-        <div>
-            <p>Edit {page.title}</p>
+        <DashboardLayout title={page.title} menuItems={menuItems}>
             <div>
                 <button className="btn">+ Add Section</button>
             </div>
-        </div>
+        </DashboardLayout>
     )
 }
