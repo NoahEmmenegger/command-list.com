@@ -1,22 +1,14 @@
 import { useAuth } from '../../utils/auth';
-import { useState, useEffect } from "react"
 import Link from "next/link";
 import Image from 'next/image'
 
 export default function DashboardLayout({ children, title, menuItems = [] }) {
     const auth = useAuth();
 
-    const [pages, setPages] = useState([])
-
-    useEffect(() => {
-        console.log('ja')
-    }, [auth])
-
-
     return (
         <div className="flex bg-lightgray h-screen w-screen">
             <div className="card bg-white m-20 flex rounded-3xl shadow-lg w-full">
-                <div className="w-60">
+                <div className="w-80">
                     <div className="h-full bg-darkgray p-10 rounded-tl-3xl rounded-bl-3xl text-white">
                         <h1 className="font-bold text-primary filter drop-shadow-lg">{title}</h1>
                         <div className="h-full flex">
@@ -25,7 +17,7 @@ export default function DashboardLayout({ children, title, menuItems = [] }) {
                                     return (
                                         <li key={item.title} className="flex container my-5">
                                             <Image alt={item.title} src={item.image} height={30} width={30} />
-                                            <p className="m-auto">{item.title}</p>
+                                            <p className="my-auto pl-6">{item.title}</p>
                                         </li>
                                     )
                                 })}

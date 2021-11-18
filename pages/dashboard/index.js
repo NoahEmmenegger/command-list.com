@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from 'next/image'
 import DashboardLayout from '../../component/dashboard/Layout';
 import { getPagesOfOwnerId } from '../../utils/pages';
+import Loading from '../../component/Loading'
+import Custom404 from '../404';
 
 export default function Dashboard() {
     const auth = useAuth();
@@ -17,6 +19,16 @@ export default function Dashboard() {
 
         getPages()
     }, [auth])
+
+    if (auth.user === null) {
+        return <DashboardLayout>
+        <Loading />
+    </DashboardLayout>
+    }
+
+    if (auth.user === false) {
+        return <Custom404 />
+    }
 
     const menuItems = [
         {
