@@ -7,7 +7,7 @@ export default function DashboardLayout({ children, title, menuItems = [] }) {
 
     return (
         <div className="flex bg-lightgray h-screen w-screen">
-            <div className="card bg-white m-20 flex rounded-3xl shadow-lg w-full">
+            <div className="card w-full m-20 flex">
                 <div className="w-80">
                     <div className="h-full bg-darkgray p-10 rounded-tl-3xl rounded-bl-3xl text-white">
                         <h1 className="font-bold text-primary filter drop-shadow-lg">{title}</h1>
