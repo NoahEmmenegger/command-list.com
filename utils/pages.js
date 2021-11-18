@@ -30,6 +30,13 @@ const getPages = async () => {
   })
 };
 
+const getPagesOfOwnerId = async ownerUid => {
+  const snapshot = await firestore.collection("pages").where('ownerUid', '==', ownerUid).get();
+  return snapshot.docs.map(doc => {
+    return doc.data()
+  })
+};
+
 const getPageSlugs = async () => {
   const snapshot = await firestore.collection("pages").get();
   return snapshot.docs.map(doc => {
@@ -54,4 +61,4 @@ const createPage = async (ownerUid, title, description) => {
 
 }
 
-export { getPageBySlug, getPages, getPageSlugs, createPage };
+export { getPageBySlug, getPages, getPagesOfOwnerId, getPageSlugs, createPage };

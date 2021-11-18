@@ -1,8 +1,9 @@
-import { useAuth } from '../utils/auth';
+import { useAuth } from '../../utils/auth';
 import { useState, useEffect } from "react"
 import Link from "next/link";
 import Image from 'next/image'
-import DashboardLayout from '../component/dashboard/Layout';
+import DashboardLayout from '../../component/dashboard/Layout';
+import { getPagesOfOwnerId } from '../../utils/pages';
 
 export default function Dashboard() {
     const auth = useAuth();
@@ -10,7 +11,11 @@ export default function Dashboard() {
     const [pages, setPages] = useState([])
 
     useEffect(() => {
-        console.log('ja')
+        const getPages = async () => {
+            setPages(await getPagesOfOwnerId(auth.userId))
+        }
+
+        getPages()
     }, [auth])
 
     const menuItems = [
@@ -33,18 +38,16 @@ export default function Dashboard() {
 
     return (
         <DashboardLayout title="Dashboard" menuItems={menuItems}>
-            <div className="w-1/4 border m-5 h-24 rounded-2xl p-5 bg-lightgray">
-                test
-            </div>
-            <div className="w-1/4 border m-5 h-24 rounded-2xl p-5">
-                test
-            </div>
-            <div className="w-1/4 border m-5 h-24 rounded-2xl p-5">
-                test
-            </div>
-            <div className="w-1/4 border m-5 h-24 rounded-2xl p-5">
-                test
-            </div>
+            {pages.map(page => {
+                console.log(page)
+                return (
+                    <Link href={'/dashboard/' + page.title.toLowerCase()} key={page.title}>
+                        <a  className="w-1/4 border m-5 h-24 rounded-2xl p-5">
+                            {page.title}
+                        </a>
+                    </Link>
+                )
+            })}
             <div className="w-1/4 border m-5 h-24 rounded-2xl p-5 relative text-center flex align-middle">
                 <p className="m-auto">Create New</p>
                 <div className="m-auto">

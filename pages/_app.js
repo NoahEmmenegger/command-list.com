@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
     )
   }
 
-  if(router.pathname === '/dashboard') {
+  if(router.pathname.startsWith('/dashboard')) {
     return (
       <ProvideAuth>
          <Component {...pageProps} />
