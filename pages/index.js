@@ -15,7 +15,7 @@ export default function Home() {
         <div className="flex h-5/6">
           <div className="w-3/5 align-middle m-auto pl-10">
             <h1 className="text-6xl">Create command pages for free</h1>
-            <Link href="login"><a className="btn mt-10 text-lg px-8" style={{ 'width': 'fit-content' }}>Start now</a></Link>
+            <Link href="/login"><a className="btn mt-10 text-lg px-8" style={{ 'width': 'fit-content' }}>Start now</a></Link>
           </div>
           <div className="w-full h-full relative p-10">
             {/* https://www.freepik.com/free-vector/happy-freelancer-with-computer-home-young-man-sitting-armchair-using-laptop-chatting-online-smiling-vector-illustration-distance-work-online-learning-freelance_10172825.htm */}
