@@ -1,6 +1,6 @@
 import '../style/index.css'
 import {ProvideAuth} from '../utils/auth'
-import Layout from '../component/Layout'
+import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
 
 import '../style/CommandList.css'
