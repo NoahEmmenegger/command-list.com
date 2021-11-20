@@ -12,7 +12,6 @@ export default function Layout({ children }) {
   let [isHamburgerShow, setIsHamburgerShow] = useState(false)
 
   useEffect(() => {
-    console.log('ja')
     setIsHamburgerShow(false)
   }, [router.route])
 
