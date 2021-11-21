@@ -12,16 +12,16 @@ export default function Home() {
       </Head>
 
       <div className="h-screen p-5">
-        <div className="h-5/6 lg:flex">
-          <div className="w-3/5 align-middle m-auto text-center">
-            <h1 className="text-6xl font-bold">Create command pages for free</h1>
+        <div className="h-5/6 flex flex-col-reverse lg:flex-row">
+          <div className="align-middle m-auto text-center">
+            <h1 className="text-6xl font-bold m-auto">Create command pages for free</h1>
             <Link href="/login"><a className="btn m-auto mt-10 text-lg px-8" style={{ 'width': 'fit-content' }}>Start now</a></Link>
           </div>
-          <div className="w-full h-full relative">
+          <div className="relative m-auto">
             <Image alt='' src="/dashboard_preview.png" height={1250} width={1967.25} objectFit="contain" />
           </div>
         </div>
-        <div className="h-10 mt-16">
+        <div className="h-10 lg:mt-16">
           <div className="flex h-10 mt-10 max-w-6xl m-auto">
             <div className="w-1/4 text-center relative">
               <Image className="m-auto filter grayscale" alt='' src="/logos/discord.svg" layout="fill" objectFit="contain" />
@@ -41,9 +41,11 @@ export default function Home() {
 
       <div>
         <div>
-          <Image src="/triangle.svg" alt='' width="100%" height="10px"  layout="responsive"/>
-          <div className="bg-primary text-white h-screen justify-center flex p-10">
-            <div className="w-screen h-auto relative filter drop-shadow-xxl">
+          <div className="h-16 relative">
+            <Image src="/triangle.svg" layout="fill" alt='' />
+          </div>
+          <div className="bg-primary text-white justify-center flex p-10">
+            <div className="w-screen h-60 relative filter drop-shadow-xxl lg:h-screen">
               <Image className="m-auto" alt='' src="/dashboard_preview.png" layout="fill" objectFit="contain" />
             </div>
           </div>
