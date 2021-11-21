@@ -1,6 +1,6 @@
 import { useAuth } from "../utils/auth"
 import { createPage } from "../utils/pages"
-import Create from '../component/Create'
+import Create from '../components/Create'
 
 export default function CreateNewPage() {
     const auth = useAuth();

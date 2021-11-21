@@ -1,5 +1,5 @@
-import Command from '../../../component/page/Command'
-import Section from '../../../component/page/Section'
+import Command from '../../../components/page/Command'
+import Section from '../../../components/page/Section'
 import { getPageBySlug, getPageSlugs } from '../../../utils/pages'
 import Custom404 from '../../404'
 

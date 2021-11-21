@@ -2,9 +2,9 @@ import { useAuth } from '../../utils/auth';
 import { useState, useEffect } from "react"
 import Link from "next/link";
 import Image from 'next/image'
-import DashboardLayout from '../../component/dashboard/Layout';
+import DashboardLayout from '../../components/dashboard/Layout';
 import { getPagesOfOwnerId } from '../../utils/pages';
-import Loading from '../../component/Loading'
+import Loading from '../../components/Loading'
 import Custom404 from '../404';
 
 export default function Dashboard() {
