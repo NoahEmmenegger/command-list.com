@@ -17,8 +17,8 @@ export default function Home() {
             <h1 className="text-6xl font-bold m-auto">Create command pages for free</h1>
             <Link href="/login"><a className="btn m-auto mt-10 text-lg px-8" style={{ 'width': 'fit-content' }}>Start now</a></Link>
           </div>
-          <div className="relative m-auto">
-            <Image alt='' src="/dashboard_preview.png" height={1250} width={1967.25} objectFit="contain" />
+          <div className="relative m-auto h-full w-full">
+            <Image alt='' src="/dashboard_preview.png" layout="fill" objectFit="contain" />
           </div>
         </div>
         <div className="h-10 lg:mt-16">
@@ -41,7 +41,7 @@ export default function Home() {
 
       <div>
         <div>
-          <div className="h-16 relative">
+          <div className="h-16 relative lg:h-44">
             <Image src="/triangle.svg" layout="fill" alt='' />
           </div>
           <div className="bg-primary text-white justify-center flex p-10">
