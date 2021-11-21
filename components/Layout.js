@@ -35,8 +35,8 @@ export default function Layout({ children }) {
           </ul>
         </nav>
         <div className="bg-white h-full w-screen fixed z-50 top-0 p-5 text-5xl flex flex-col" style={{display: isHamburgerShow?'':'none'}}>
-          <div className="relative h-10 w-10 m-auto mr-0 mt-0 cursor-pointer" onClick={() => setIsHamburgerShow(false)}>
-            <Image src="/icons/menu_hamburger.svg" alt="" layout="fill" objectFit="contain" />
+          <div className="relative h-10 w-10 m-auto my-0 cursor-pointer mr-5" onClick={() => setIsHamburgerShow(false)}>
+            <Image src="/icons/close.svg" alt="" layout="fill" objectFit="contain" />
           </div>
           <ul className="flex flex-col m-auto">
             <li className="m-auto py-3"><Link href="/register">Register</Link></li>
