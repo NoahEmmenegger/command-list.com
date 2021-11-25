@@ -51,7 +51,6 @@ export default function Dashboard() {
     return (
         <DashboardLayout title="Dashboard" menuItems={menuItems}>
             {pages.map(page => {
-                console.log(page)
                 return (
                     <Link href={'/dashboard/' + page.title.toLowerCase()} key={page.title}>
                         <a  className="w-1/4 border m-5 h-24 rounded-2xl p-5">

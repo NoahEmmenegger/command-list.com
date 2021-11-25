@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import DashboardLayout from '../../../components/dashboard/Layout'
+import EditSection from '../../../components/dashboard/Section'
 import Loading from '../../../components/Loading'
 import { useAuth } from '../../../utils/auth'
 import { getPageBySlug } from '../../../utils/pages'
@@ -12,7 +13,7 @@ export default function Edit() {
 
     const { slug } = router.query
 
-    const [page, setPage] = useState()
+    const [page, setPage] = useState(null)
 
     useEffect(() => {
         const initPage = async () => {
@@ -27,7 +28,7 @@ export default function Edit() {
         </DashboardLayout>
     }
 
-    if(!auth.userId || page.ownerUid !== auth.userId) {
+    if (!auth.userId || page.ownerUid !== auth.userId) {
         return <Custom404 />
     }
 
@@ -47,6 +48,9 @@ export default function Edit() {
     return (
         <DashboardLayout title={page.title} menuItems={menuItems}>
             <div>
+                {page.sections.map(section => {
+                    return <EditSection key={section.title} section={section} />
+                })}
                 <button className="btn">+ Add Section</button>
             </div>
         </DashboardLayout>
