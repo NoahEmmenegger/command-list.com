@@ -1,7 +1,10 @@
 import EditCommand from "./Command"
 import { Draggable } from "react-beautiful-dnd"
+import { useState } from "react"
 
 export default function EditSection({ section, index }) {
+    const [isHidden, setIsHidden] = useState(true)
+
     return (
         <Draggable key={section.id} draggableId={section.id.toString()} index={index}>
             {(provided, snapshot) => (
@@ -10,11 +13,11 @@ export default function EditSection({ section, index }) {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    <div className="card p-10">
+                    <div className="card p-10 m-10 bg-gray-50" onClick={() => setIsHidden(!isHidden)}>
                         <input type="text" value={section.title} />
-                        {section.commands.map(command => {
+                        {!isHidden ? section.commands.map(command => {
                             return <EditCommand key={command.id} command={command} />
-                        })}
+                        }) : null}
                     </div>
                 </div>
             )}

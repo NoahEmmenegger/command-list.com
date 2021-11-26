@@ -48,7 +48,7 @@ export default function Edit() {
 
     return (
         <DashboardLayout title={page.title} menuItems={menuItems}>
-            <div>
+            <div className="w-full">
                 <DragDropContext onDragEnd={event => console.log(event)}>
                     <Droppable droppableId="droppable">
                         {(provided, snapshot) => (
