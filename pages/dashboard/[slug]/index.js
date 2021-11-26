@@ -6,6 +6,7 @@ import Loading from '../../../components/Loading'
 import { useAuth } from '../../../utils/auth'
 import { getPageBySlug } from '../../../utils/pages'
 import Custom404 from '../../404'
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function Edit() {
     const router = useRouter()
@@ -48,10 +49,21 @@ export default function Edit() {
     return (
         <DashboardLayout title={page.title} menuItems={menuItems}>
             <div>
-                {page.sections.map(section => {
-                    return <EditSection key={section.title} section={section} />
-                })}
-                <button className="btn">+ Add Section</button>
+                <DragDropContext onDragEnd={event => console.log(event)}>
+                    <Droppable droppableId="droppable">
+                        {(provided, snapshot) => (
+                            <div
+                                {...provided.droppableProps}
+                                ref={provided.innerRef}
+                            >
+                                {page.sections.map((section, index) => (
+                                    <EditSection key={section.id} section={section} index={index} />
+                                ))}
+                                {provided.placeholder}
+                            </div>
+                        )}
+                    </Droppable>
+                </DragDropContext>
             </div>
         </DashboardLayout>
     )
