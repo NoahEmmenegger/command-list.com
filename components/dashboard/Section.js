@@ -24,8 +24,9 @@ export default function EditSection({ section, index }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          className="mb-10"
         >
-          <div className="card p-10 m-10 bg-gray-50">
+          <div className="card p-10 bg-gray-50">
             <div className="flex">
               <div className="mr-auto">
                 <input

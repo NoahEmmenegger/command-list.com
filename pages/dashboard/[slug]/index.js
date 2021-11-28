@@ -62,7 +62,16 @@ export default function Edit() {
         <DragDropContext onDragEnd={(event) => console.log(event)}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className={
+                  snapshot.isDraggingOver
+                    ? "border-2 rounded-3xl"
+                    : "border-2 border-white"
+                }
+              >
+                {console.log(snapshot)}
                 {page.sections.map((section, index) => (
                   <EditSection
                     key={section.id}
