@@ -9,6 +9,7 @@ import Custom404 from "../../404";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Link from "next/link";
 import Image from "next/image";
+import Modal from "../../../components/Modal";
 
 export default function Edit() {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function Edit() {
   const { slug } = router.query;
 
   const [page, setPage] = useState(null);
+  const [isAddSectionShown, setIsAddSectionShown] = useState(false);
 
   useEffect(() => {
     const initPage = async () => {
@@ -49,6 +51,8 @@ export default function Edit() {
       href: "",
     },
   ];
+
+  console.log("ja", isAddSectionShown);
 
   return (
     <DashboardLayout title={page.title} menuItems={menuItems}>
@@ -86,11 +90,20 @@ export default function Edit() {
         </DragDropContext>
       </div>
       <div>
-        <button className="btn flex m-auto mr-0 mb-4">
+        <button
+          className="btn flex m-auto mr-0 mb-4"
+          onClick={() => setIsAddSectionShown(true)}
+        >
           <p className="m-auto mr-3">Add section</p>
           <Image alt="" src="/icons/plus.svg" height="30" width="30" />
         </button>
       </div>
+      <Modal
+        isShown={!isAddSectionShown}
+        onclose={() => setIsAddSectionShown(false)}
+      >
+        test
+      </Modal>
     </DashboardLayout>
   );
 }
