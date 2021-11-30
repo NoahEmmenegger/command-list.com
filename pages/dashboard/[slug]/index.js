@@ -9,7 +9,7 @@ import Custom404 from "../../404";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Link from "next/link";
 import Image from "next/image";
-import Modal from "../../../components/Modal";
+import NewSectionModal from "../../../components/dashboard/NewSectionModal";
 
 export default function Edit() {
   const router = useRouter();
@@ -98,12 +98,7 @@ export default function Edit() {
           <Image alt="" src="/icons/plus.svg" height="30" width="30" />
         </button>
       </div>
-      <Modal
-        isShown={!isAddSectionShown}
-        onclose={() => setIsAddSectionShown(false)}
-      >
-        test
-      </Modal>
+      <NewSectionModal isShown={isAddSectionShown} onClose={() => setIsAddSectionShown(false)} pageUid={page.title.toLowerCase()} onNewSection={newSection => setPage({...page, sections: [...page.sections, newSection]})}/>
     </DashboardLayout>
   );
 }

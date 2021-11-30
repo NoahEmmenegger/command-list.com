@@ -16,7 +16,7 @@ export default function Modal({ children, isShown, onclose }) {
             <Image alt="" src="/icons/close.svg" height="30" width="30" />
           </button>
         </div>
-        <div className="m-10">{children}</div>
+        <div className="h-full">{children}</div>
       </div>
     </div>
   );
