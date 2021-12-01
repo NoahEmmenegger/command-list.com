@@ -52,7 +52,7 @@ export default function Edit() {
     },
   ];
 
-  console.log("ja", isAddSectionShown);
+  console.log(page.sections)
 
   return (
     <DashboardLayout title={page.title} menuItems={menuItems}>
@@ -81,6 +81,8 @@ export default function Edit() {
                     key={section.id}
                     section={section}
                     index={index}
+                    pageUid={page.title.toLowerCase()}
+                    onSectionDelete={(sectionUid) => setPage({...page, sections: [...page.sections.filter(s => s.id !== sectionUid)]})}
                   />
                 ))}
                 {provided.placeholder}

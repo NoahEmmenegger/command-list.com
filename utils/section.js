@@ -18,4 +18,14 @@ const add = async (pageUid, newSection) => {
   })
 };
 
-export { update, add };
+const deleteSection = async (pageUid, sectionId) => {
+  return new Promise((res, rej) => {
+    firestore.collection("pages").doc(pageUid).update({
+      sections: firebase.firestore.FieldValue.arrayRemove(firestore.doc(`sections/${sectionId}`))
+    }).then(() => {
+      firestore.collection("sections").doc(sectionId).delete().then(() => res(sectionId))
+    })
+  })
+};
+
+export { update, add, deleteSection };

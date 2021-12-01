@@ -2,10 +2,11 @@ import EditCommand from "./Command";
 import { Draggable } from "react-beautiful-dnd";
 import { useState } from "react";
 import Image from "next/image";
-import { update } from "../../utils/section";
+import { deleteSection, update } from "../../utils/section";
 
-export default function EditSection({ section, index }) {
+export default function EditSection({ section, index, pageUid, onSectionDelete }) {
   const [isHidden, setIsHidden] = useState(true);
+  const [isHover, setIsHover] = useState(false)
 
   const [newSection, setNewSection] = useState(section);
 
@@ -24,8 +25,17 @@ export default function EditSection({ section, index }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          className="mb-10"
+          className="mb-10 relative"
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
+          <div onClick={() => {
+            deleteSection(pageUid, section.id).then(sectionUid => {
+              onSectionDelete(sectionUid)
+            })
+          }} className={"top-0 left-0 cursor-pointer" + (isHover ? " absolute" : " hidden")}>
+            <Image src="/icons/close.svg" height="30" width="30" />
+          </div>
           <div className="card p-10 bg-gray-50">
             <div className="flex">
               <div className="mr-auto">
@@ -47,8 +57,8 @@ export default function EditSection({ section, index }) {
             </div>
             {!isHidden
               ? newSection.commands.map((command) => {
-                  return <EditCommand key={command.id} command={command} />;
-                })
+                return <EditCommand key={command.id} command={command} />;
+              })
               : null}
           </div>
         </div>
