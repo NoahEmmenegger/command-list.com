@@ -46,20 +46,11 @@ export function lightTemplate(page) {
     )
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     let page = await getPageBySlug(params.slug)
     return {
         props: {
             page
-        },
-        revalidate: 10
+        }
     }
 }
-
-export async function getStaticPaths() {
-    const documents = await getPageSlugs()
-    return {
-      paths: documents.map(doc => `/page/${doc}`),
-      fallback: true,
-    }
-  }
