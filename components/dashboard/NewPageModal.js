@@ -1,9 +1,10 @@
 import Modal from "../Modal"
-import { add } from "../../utils/section"
 import { useState } from "react"
+import { createPage } from "../../utils/pages"
 
-export default function NewSectionModal({isShown, onClose, pageUid, onNewSection}) {
+export default function NewPageModal({isShown, ownerUid, onClose, onNewPage}) {
     const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
 
     return (
         <Modal
@@ -11,18 +12,23 @@ export default function NewSectionModal({isShown, onClose, pageUid, onNewSection
             onclose={() => onClose()}
         >
             <div className="flex flex-col h-full">
-                <h1 className="mb-10">New Section</h1>
+                <h1 className="mb-10">New Page</h1>
                 <div className="my-auto">
                     <div>
-                        <p>Name</p>
+                        <p>Title</p>
                         <input type="text" placeholder="value" value={title} onChange={e => setTitle(e.target.value)}/>
+                    </div>
+                    <div>
+                        <p>Description</p>
+                        <input type="text" placeholder="value" value={description} onChange={e => setDescription(e.target.value)}/>
                     </div>
                 </div>
                 <button className="btn m-auto mr-0" onClick={async () => {
-                    const uid = await add(pageUid, {title, commands: []})
+                    await createPage(ownerUid, title, description)
                     onClose()
-                    onNewSection({title, commands: [], id: uid})
+                    onNewPage({title, description})
                     setTitle('')
+                    setDescription('')
                 }}>Add</button>
             </div>
         </Modal>

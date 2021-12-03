@@ -1,13 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
 
 export default function Modal({ children, isShown, onclose }) {
   return (
     <div
       className={
         "fixed w-screen h-screen bg-black bg-opacity-70 top-0 left-0" +
-        (isShown ? " hidden" : " flex")
+        (isShown ? " flex" : " hidden")
       }
     >
       <div className="card p-10 m-auto w-1/2 h-1/2">

@@ -52,8 +52,6 @@ export default function Edit() {
     },
   ];
 
-  console.log(page.sections)
-
   return (
     <DashboardLayout title={page.title} menuItems={menuItems}>
       <Link href={`/page/${page.title.toLowerCase()}`}>

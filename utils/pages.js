@@ -45,7 +45,6 @@ const getPageSlugs = async () => {
 }
 
 const createPage = async (ownerUid, title, description) => {
-  console.log(ownerUid)
   let doesExist = (await firestore.collection('pages').doc(title).get()).exists
   if (!doesExist) {
     firestore.collection('pages').doc(title).set({
