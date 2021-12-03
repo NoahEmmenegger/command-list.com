@@ -2,6 +2,7 @@ import Command from '../../../components/page/Command'
 import Section from '../../../components/page/Section'
 import { getPageBySlug, getPageSlugs } from '../../../utils/pages'
 import Custom404 from '../../404'
+import Head from 'next/head'
 
 export default function Page({ page }) {
 
@@ -22,8 +23,11 @@ export default function Page({ page }) {
 
 export function defaultTemplate(page) {
     return(
-        <div className="bg-darkgray">
-            <h1 className="text-8xl text-center font-bold text-white">{page.title}</h1>
+        <div className="bg-darkgray min-h-screen">
+            <Head>
+                <link type="text/css" rel="stylesheet" href="/style/page/default.css" />
+            </Head>
+            <h1 className="text-5xl text-center font-bold text-white">{page.title}</h1>
             {page.sections.map(section => {
                 return (
                     <Section key={section.id} template={page.template} section={section}>

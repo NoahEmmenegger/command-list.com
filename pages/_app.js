@@ -3,7 +3,6 @@ import {ProvideAuth} from '../utils/auth'
 import Layout from '../components/Layout'
 import { useRouter } from 'next/router'
 
-import '../style/CommandList.css'
 
 
 function MyApp({ Component, pageProps }) {
