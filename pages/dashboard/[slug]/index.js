@@ -4,7 +4,7 @@ import DashboardLayout from "../../../components/dashboard/Layout";
 import EditSection from "../../../components/dashboard/Section";
 import Loading from "../../../components/Loading";
 import { useAuth } from "../../../utils/auth";
-import { getPageBySlug } from "../../../utils/pages";
+import { getPageBySlug, updatePage } from "../../../utils/pages";
 import Custom404 from "../../404";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Link from "next/link";
@@ -26,6 +26,13 @@ export default function Edit() {
         };
         initPage();
     }, [slug]);
+
+    useEffect(() => {
+        if (page && Object.keys(page).length !== 0) {
+            console.log(page);
+            updatePage(page);
+        }
+    }, [page]);
 
     if (!page || Object.keys(page).length === 0) {
         return (
@@ -87,21 +94,22 @@ export default function Edit() {
                             >
                                 {page.sections.map((section, index) => (
                                     <EditSection
-                                        key={section.id}
+                                        key={index}
                                         section={section}
                                         index={index}
-                                        pageUid={page.title.toLowerCase()}
-                                        onSectionDelete={(sectionUid) =>
-                                            setPage({
-                                                ...page,
-                                                sections: [
-                                                    ...page.sections.filter(
-                                                        (s) =>
-                                                            s.id !== sectionUid
-                                                    ),
-                                                ],
-                                            })
-                                        }
+                                        onUpdateSection={(newSection) => {
+                                            const newPage = { ...page };
+                                            if (newSection) {
+                                                newPage.sections[index] =
+                                                    newSection;
+                                            } else {
+                                                newPage.sections.splice(
+                                                    index,
+                                                    1
+                                                );
+                                            }
+                                            setPage(newPage);
+                                        }}
                                     />
                                 ))}
                                 {provided.placeholder}

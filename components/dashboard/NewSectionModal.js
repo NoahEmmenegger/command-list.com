@@ -1,5 +1,4 @@
 import Modal from "../Modal";
-import { add } from "../../utils/section";
 import { useState } from "react";
 
 export default function NewSectionModal({
@@ -28,9 +27,8 @@ export default function NewSectionModal({
                 <button
                     className="btn m-auto mr-0"
                     onClick={async () => {
-                        const uid = await add(pageUid, { title, commands: [] });
                         onClose();
-                        onNewSection({ title, commands: [], id: uid });
+                        onNewSection({ title, commands: [] });
                         setTitle("");
                     }}
                 >

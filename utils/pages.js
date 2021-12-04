@@ -8,23 +8,7 @@ const getPageBySlug = async (slug) => {
         return {};
     }
 
-    page.sections = await DocumentArrayReferenceToJson(page.sections);
     return page;
-};
-
-const DocumentArrayReferenceToJson = async (reference) => {
-    let promises = await reference.map(async (reference) => {
-        let section = (await reference.get()).data();
-        section.id = reference.id;
-        if (section.commands) {
-            section.commands = await DocumentArrayReferenceToJson(
-                section.commands
-            );
-        }
-        return section;
-    });
-
-    return await Promise.all(promises);
 };
 
 const getPages = async () => {
@@ -52,10 +36,11 @@ const getPageSlugs = async () => {
 };
 
 const createPage = async (ownerUid, title, description) => {
-    let doesExist = (await firestore.collection("pages").doc(title).get())
-        .exists;
+    let doesExist = (
+        await firestore.collection("pages").doc(title.toLowerCase()).get()
+    ).exists;
     if (!doesExist) {
-        firestore.collection("pages").doc(title).set({
+        firestore.collection("pages").doc(title.toLowerCase()).set({
             ownerUid,
             title: title,
             description: description,
@@ -67,4 +52,20 @@ const createPage = async (ownerUid, title, description) => {
     }
 };
 
-export { getPageBySlug, getPages, getPagesOfOwnerId, getPageSlugs, createPage };
+const updatePage = async (newPage) => {
+    return new Promise((res, rej) => {
+        firestore
+            .collection("pages")
+            .doc(newPage.title.toLowerCase())
+            .set(newPage);
+    });
+};
+
+export {
+    getPageBySlug,
+    getPages,
+    getPagesOfOwnerId,
+    getPageSlugs,
+    createPage,
+    updatePage,
+};

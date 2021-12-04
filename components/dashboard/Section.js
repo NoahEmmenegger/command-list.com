@@ -2,14 +2,8 @@ import EditCommand from "./Command";
 import { Draggable } from "react-beautiful-dnd";
 import { useState } from "react";
 import Image from "next/image";
-import { deleteSection, update } from "../../utils/section";
 
-export default function EditSection({
-    section,
-    index,
-    pageUid,
-    onSectionDelete,
-}) {
+export default function EditSection({ section, index, onUpdateSection }) {
     const [isHidden, setIsHidden] = useState(true);
     const [isHover, setIsHover] = useState(false);
 
@@ -20,11 +14,7 @@ export default function EditSection({
     }
 
     return (
-        <Draggable
-            key={newSection.id}
-            draggableId={newSection.id.toString()}
-            index={index}
-        >
+        <Draggable key={index} draggableId={index.toString()} index={index}>
             {(provided, snapshot) => (
                 <div
                     ref={provided.innerRef}
@@ -36,11 +26,7 @@ export default function EditSection({
                 >
                     <div
                         onClick={() => {
-                            deleteSection(pageUid, section.id).then(
-                                (sectionUid) => {
-                                    onSectionDelete(sectionUid);
-                                }
-                            );
+                            onUpdateSection(null);
                         }}
                         className={
                             "-top-3 -left-3 cursor-pointer" +
@@ -67,7 +53,7 @@ export default function EditSection({
                                             title: event.target.value,
                                         })
                                     }
-                                    onBlur={() => update(newSection)}
+                                    onBlur={() => onUpdateSection(newSection)}
                                 />
                             </div>
                             <div className="ml-5">
