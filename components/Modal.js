@@ -4,7 +4,7 @@ export default function Modal({ children, isShown, onclose }) {
     return (
         <div
             className={
-                "fixed w-screen h-screen bg-black bg-opacity-70 top-0 left-0" +
+                "fixed w-screen h-screen bg-black bg-opacity-70 top-0 left-0 z-40" +
                 (isShown ? " flex" : " hidden")
             }
         >

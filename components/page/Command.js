@@ -12,7 +12,7 @@ const defaultTemplate = (command) => {
     return (
         <div className="">
             <p className="">
-                <strong>{command.title}</strong>
+                <strong>{command.name}</strong>
             </p>
             <span className="">{command.description}</span>
         </div>

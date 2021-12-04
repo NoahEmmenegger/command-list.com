@@ -1,13 +1,23 @@
 import EditCommand from "./Command";
 import { Draggable } from "react-beautiful-dnd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import NewCommandModal from "./NewCommandModal";
 
 export default function EditSection({ section, index, onUpdateSection }) {
     const [isHidden, setIsHidden] = useState(true);
     const [isHover, setIsHover] = useState(false);
-
     const [newSection, setNewSection] = useState(section);
+    const [isNewCommandShown, setIsNewCommandShown] = useState(false);
+
+    useEffect(() => {
+        console.log("ja");
+        if (newSection && Object.keys(newSection).length !== 0) {
+            console.log(newSection);
+            onUpdateSection(newSection);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [newSection]);
 
     if (!newSection) {
         return null;
@@ -53,7 +63,6 @@ export default function EditSection({ section, index, onUpdateSection }) {
                                             title: event.target.value,
                                         })
                                     }
-                                    onBlur={() => onUpdateSection(newSection)}
                                 />
                             </div>
                             <div className="ml-5">
@@ -77,17 +86,41 @@ export default function EditSection({ section, index, onUpdateSection }) {
                                 </button>
                             </div>
                         </div>
-                        {!isHidden
-                            ? newSection.commands.map((command) => {
-                                  return (
-                                      <EditCommand
-                                          key={command.id}
-                                          command={command}
-                                      />
-                                  );
-                              })
-                            : null}
+                        {!isHidden ? (
+                            <div>
+                                {newSection.commands.map((command) => {
+                                    return (
+                                        <EditCommand
+                                            key={command.id}
+                                            command={command}
+                                        />
+                                    );
+                                })}
+                                <button
+                                    className="btn flex m-auto mr-0 mb-4"
+                                    onClick={() => setIsNewCommandShown(true)}
+                                >
+                                    <p className="m-auto mr-3">Add command</p>
+                                    <Image
+                                        alt=""
+                                        src="/icons/plus.svg"
+                                        height="30"
+                                        width="30"
+                                    />
+                                </button>
+                            </div>
+                        ) : null}
                     </div>
+                    <NewCommandModal
+                        isShown={isNewCommandShown}
+                        onClose={() => setIsNewCommandShown(false)}
+                        onNewCommand={(newCommand) =>
+                            setNewSection({
+                                ...newSection,
+                                commands: [...newSection.commands, newCommand],
+                            })
+                        }
+                    />
                 </div>
             )}
         </Draggable>
