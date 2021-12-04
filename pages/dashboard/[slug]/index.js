@@ -52,6 +52,13 @@ export default function Edit() {
     },
   ];
 
+  const onDragEnd = (result) => {
+    console.log(result);
+    if (!result.destination) {
+      return;
+    }
+  };
+
   return (
     <DashboardLayout title={page.title} menuItems={menuItems}>
       <Link href={`/page/${page.title.toLowerCase()}`}>
@@ -61,7 +68,7 @@ export default function Edit() {
         </a>
       </Link>
       <div className="w-full">
-        <DragDropContext onDragEnd={(event) => console.log(event)}>
+        <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
               <div
@@ -73,14 +80,20 @@ export default function Edit() {
                     : "border-2 border-white"
                 }
               >
-                {console.log(snapshot)}
                 {page.sections.map((section, index) => (
                   <EditSection
                     key={section.id}
                     section={section}
                     index={index}
                     pageUid={page.title.toLowerCase()}
-                    onSectionDelete={(sectionUid) => setPage({...page, sections: [...page.sections.filter(s => s.id !== sectionUid)]})}
+                    onSectionDelete={(sectionUid) =>
+                      setPage({
+                        ...page,
+                        sections: [
+                          ...page.sections.filter((s) => s.id !== sectionUid),
+                        ],
+                      })
+                    }
                   />
                 ))}
                 {provided.placeholder}
@@ -98,7 +111,14 @@ export default function Edit() {
           <Image alt="" src="/icons/plus.svg" height="30" width="30" />
         </button>
       </div>
-      <NewSectionModal isShown={isAddSectionShown} onClose={() => setIsAddSectionShown(false)} pageUid={page.title.toLowerCase()} onNewSection={newSection => setPage({...page, sections: [...page.sections, newSection]})}/>
+      <NewSectionModal
+        isShown={isAddSectionShown}
+        onClose={() => setIsAddSectionShown(false)}
+        pageUid={page.title.toLowerCase()}
+        onNewSection={(newSection) =>
+          setPage({ ...page, sections: [...page.sections, newSection] })
+        }
+      />
     </DashboardLayout>
   );
 }
