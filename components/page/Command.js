@@ -1,10 +1,10 @@
 export default function Command({ template, command }) {
     switch (template) {
-        case 'light':
-            return (<div>test</div>)
+        case "light":
+            return <div>test</div>;
 
         default:
-            return defaultTemplate(command)
+            return defaultTemplate(command);
     }
 }
 
@@ -16,5 +16,5 @@ const defaultTemplate = (command) => {
             </p>
             <span className="">{command.description}</span>
         </div>
-    )
-}
+    );
+};
