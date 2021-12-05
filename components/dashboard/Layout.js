@@ -1,8 +1,14 @@
 import { useAuth } from "../../utils/auth";
 import Link from "next/link";
 import Image from "next/image";
+import StatusBar, { Status } from "../general/StatusBar";
 
-export default function DashboardLayout({ children, title, menuItems = [] }) {
+export default function DashboardLayout({
+    children,
+    title,
+    status,
+    menuItems = [],
+}) {
     const auth = useAuth();
 
     return (
@@ -59,6 +65,7 @@ export default function DashboardLayout({ children, title, menuItems = [] }) {
                     <div className="p-20 flex flex-wrap">{children}</div>
                 </div>
             </div>
+            <StatusBar status={status} />
         </div>
     );
 }

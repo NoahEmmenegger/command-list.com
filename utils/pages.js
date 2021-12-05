@@ -57,7 +57,8 @@ const updatePage = async (newPage) => {
         firestore
             .collection("pages")
             .doc(newPage.title.toLowerCase())
-            .set(newPage);
+            .set(newPage)
+            .then(() => res(true));
     });
 };
 

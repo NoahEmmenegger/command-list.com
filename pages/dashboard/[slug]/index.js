@@ -10,6 +10,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import Link from "next/link";
 import Image from "next/image";
 import NewSectionModal from "../../../components/dashboard/NewSectionModal";
+import { Status } from "../../../components/general/StatusBar";
 
 export default function Edit() {
     const router = useRouter();
@@ -19,6 +20,7 @@ export default function Edit() {
 
     const [page, setPage] = useState(null);
     const [isAddSectionShown, setIsAddSectionShown] = useState(false);
+    const [status, setStatus] = useState(Status.HIDDEN);
 
     useEffect(() => {
         const initPage = async () => {
@@ -29,8 +31,11 @@ export default function Edit() {
 
     useEffect(() => {
         if (page && Object.keys(page).length !== 0) {
+            setStatus(Status.LOADING);
             console.log("db update", page);
-            updatePage(page);
+            updatePage(page).then(() => {
+                setStatus(Status.SUCCESSFULLY);
+            });
         }
     }, [page]);
 
@@ -67,7 +72,11 @@ export default function Edit() {
     };
 
     return (
-        <DashboardLayout title={page.title} menuItems={menuItems}>
+        <DashboardLayout
+            title={page.title}
+            menuItems={menuItems}
+            status={status}
+        >
             <Link href={`/page/${page.title.toLowerCase()}`}>
                 <a target="_blank" className="btn flex m-auto mr-0 mb-4">
                     <p className="m-auto mr-3">view</p>
