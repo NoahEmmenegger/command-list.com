@@ -24,6 +24,7 @@ export function defaultTemplate(page) {
     return (
         <div className="bg-darkgray min-h-screen">
             <Head>
+                {/* eslint-disable-next-line @next/next/no-css-tags */}
                 <link
                     type="text/css"
                     rel="stylesheet"
@@ -33,17 +34,17 @@ export function defaultTemplate(page) {
             <h1 className="text-5xl text-center font-bold text-white">
                 {page.title}
             </h1>
-            {page.sections.map((section) => {
+            {page.sections.map((section, index) => {
                 return (
                     <Section
-                        key={section.id}
+                        key={index}
                         template={page.template}
                         section={section}
                     >
-                        {section.commands.map((cmd) => {
+                        {section.commands.map((cmd, key) => {
                             return (
                                 <Command
-                                    key={cmd.id}
+                                    key={key}
                                     template={page.template}
                                     command={cmd}
                                 />

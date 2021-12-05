@@ -29,7 +29,7 @@ export default function Edit() {
 
     useEffect(() => {
         if (page && Object.keys(page).length !== 0) {
-            console.log(page);
+            console.log("db update", page);
             updatePage(page);
         }
     }, [page]);

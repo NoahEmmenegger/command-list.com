@@ -11,9 +11,7 @@ export default function EditSection({ section, index, onUpdateSection }) {
     const [isNewCommandShown, setIsNewCommandShown] = useState(false);
 
     useEffect(() => {
-        console.log("ja");
         if (newSection && Object.keys(newSection).length !== 0) {
-            console.log(newSection);
             onUpdateSection(newSection);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,11 +86,27 @@ export default function EditSection({ section, index, onUpdateSection }) {
                         </div>
                         {!isHidden ? (
                             <div>
-                                {newSection.commands.map((command) => {
+                                {newSection.commands.map((command, index) => {
                                     return (
                                         <EditCommand
-                                            key={command.id}
+                                            key={index}
                                             command={command}
+                                            onUpdate={(updatedCommand) => {
+                                                const updatedSection = {
+                                                    ...newSection,
+                                                };
+                                                if (updatedSection) {
+                                                    updatedSection.commands[
+                                                        index
+                                                    ] = updatedCommand;
+                                                } else {
+                                                    updatedSection.commands.splice(
+                                                        index,
+                                                        1
+                                                    );
+                                                }
+                                                setNewSection(updatedSection);
+                                            }}
                                         />
                                     );
                                 })}
