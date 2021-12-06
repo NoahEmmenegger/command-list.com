@@ -7,17 +7,9 @@ import NewCommandModal from "./NewCommandModal";
 export default function EditSection({ section, index, onUpdateSection }) {
     const [isHidden, setIsHidden] = useState(true);
     const [isHover, setIsHover] = useState(false);
-    const [newSection, setNewSection] = useState(section);
     const [isNewCommandShown, setIsNewCommandShown] = useState(false);
 
-    useEffect(() => {
-        if (newSection && Object.keys(newSection).length !== 0) {
-            onUpdateSection(newSection);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [newSection]);
-
-    if (!newSection) {
+    if (!section) {
         return null;
     }
 
@@ -54,10 +46,10 @@ export default function EditSection({ section, index, onUpdateSection }) {
                                 <input
                                     type="text"
                                     className="w-full text-2xl m-auto"
-                                    value={newSection.title}
+                                    value={section.title}
                                     onChange={(event) =>
-                                        setNewSection({
-                                            ...newSection,
+                                        onUpdateSection({
+                                            ...section,
                                             title: event.target.value,
                                         })
                                     }
@@ -86,14 +78,14 @@ export default function EditSection({ section, index, onUpdateSection }) {
                         </div>
                         {!isHidden ? (
                             <div>
-                                {newSection.commands.map((command, index) => {
+                                {section.commands.map((command, index) => {
                                     return (
                                         <EditCommand
                                             key={index}
                                             command={command}
                                             onUpdate={(updatedCommand) => {
                                                 const updatedSection = {
-                                                    ...newSection,
+                                                    ...section,
                                                 };
                                                 if (updatedSection) {
                                                     updatedSection.commands[
@@ -105,7 +97,7 @@ export default function EditSection({ section, index, onUpdateSection }) {
                                                         1
                                                     );
                                                 }
-                                                setNewSection(updatedSection);
+                                                onUpdateSection(updatedSection);
                                             }}
                                         />
                                     );
@@ -129,9 +121,9 @@ export default function EditSection({ section, index, onUpdateSection }) {
                         isShown={isNewCommandShown}
                         onClose={() => setIsNewCommandShown(false)}
                         onNewCommand={(newCommand) =>
-                            setNewSection({
-                                ...newSection,
-                                commands: [...newSection.commands, newCommand],
+                            onUpdateSection({
+                                ...section,
+                                commands: [...section.commands, newCommand],
                             })
                         }
                     />

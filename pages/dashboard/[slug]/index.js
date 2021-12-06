@@ -32,7 +32,7 @@ export default function Edit() {
     useEffect(() => {
         if (page && Object.keys(page).length !== 0) {
             setStatus(Status.LOADING);
-            console.log("db update", page);
+            console.log("db update", page.sections);
             updatePage(page).then(() => {
                 setStatus(Status.SUCCESSFULLY);
             });
@@ -64,11 +64,29 @@ export default function Edit() {
         },
     ];
 
+    const reorder = (list, startIndex, endIndex) => {
+        console.log(startIndex, endIndex);
+        const result = Array.from(list);
+        const [removed] = result.splice(startIndex, 1);
+        result.splice(endIndex, 0, removed);
+
+        return result;
+    };
+
     const onDragEnd = (result) => {
-        console.log(result);
         if (!result.destination) {
             return;
         }
+
+        const sections = reorder(
+            page.sections,
+            result.source.index,
+            result.destination.index
+        );
+
+        console.log(sections);
+
+        setPage({ ...page, sections: sections });
     };
 
     return (
