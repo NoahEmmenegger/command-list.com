@@ -61,6 +61,25 @@
     color: #909090;
 }
 
+.invite_footer {
+    background-color: rgb(52, 58, 64);
+    color: white;
+}
+
+.invite_footer > div > .btn_invite {
+    background-color: red;
+}
+
+.invite_footer {
+    padding-top: 20px;
+    padding-bottom: 70px;
+}
+
+.invite_footer > h2 {
+    padding-bottom: 50px;
+    font-size: 3vw;
+}
+
 @media screen and (max-width: 992px) {
     .command_list h2 {
         color: #909090;

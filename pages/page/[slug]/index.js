@@ -3,6 +3,7 @@ import Section from "../../../components/page/Section";
 import { getPageBySlug, getPageSlugs } from "../../../utils/pages";
 import Custom404 from "../../404";
 import Head from "next/head";
+import Question from "../../../components/page/Question";
 
 export default function Page({ page }) {
     if (page === undefined || Object.keys(page).length === 0) {
@@ -11,27 +12,13 @@ export default function Page({ page }) {
 
     page.template = page.template ? page.template : "default";
 
-    switch (page.template) {
-        case "light":
-            return lightTemplate(page);
-
-        default:
-            return defaultTemplate(page);
-    }
-}
-
-export function defaultTemplate(page) {
     return (
         <div className="bg-darkgray min-h-screen">
             <Head>
-                {/* eslint-disable-next-line @next/next/no-css-tags */}
-                <link
-                    type="text/css"
-                    rel="stylesheet"
-                    href="/style/page/default.css"
-                />
+                <title>{page.title} | Commands</title>
+                {getTemplateImport(page.template)}
             </Head>
-            <h1 className="text-5xl text-center font-bold text-white">
+            <h1 className="text-5xl text-center font-bold text-white pt-32">
                 {page.title}
             </h1>
             {page.sections.map((section, index) => {
@@ -53,13 +40,38 @@ export function defaultTemplate(page) {
                     </Section>
                 );
             })}
+            <Question />
         </div>
     );
 }
 
-export function lightTemplate(page) {
-    return <div>todo: implement</div>;
-}
+const getTemplateImport = (template) => {
+    switch (template) {
+        case "light":
+            return (
+                <>
+                    {/* eslint-disable-next-line @next/next/no-css-tags */}
+                    <link
+                        type="text/css"
+                        rel="stylesheet"
+                        href="/style/page/default.css"
+                    />
+                </>
+            );
+
+        default:
+            return (
+                <>
+                    {/* eslint-disable-next-line @next/next/no-css-tags */}
+                    <link
+                        type="text/css"
+                        rel="stylesheet"
+                        href="/style/page/default.css"
+                    />
+                </>
+            );
+    }
+};
 
 export async function getServerSideProps({ params }) {
     let page = await getPageBySlug(params.slug);
