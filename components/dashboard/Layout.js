@@ -13,9 +13,9 @@ export default function DashboardLayout({
 
     return (
         <div className="flex h-screen">
-            <div className="w-80">
-                <div className="h-full bg-darkgray p-10 text-white">
-                    <h1 className="font-bold text-primary filter drop-shadow-lg">
+            <div className="lg:w-80">
+                <div className="h-screen bg-darkgray p-2 text-white lg:p-10">
+                    <h1 className="font-bold text-primary filter drop-shadow-lg hidden lg:block">
                         {title}
                     </h1>
                     <div className="h-full flex">
@@ -24,17 +24,23 @@ export default function DashboardLayout({
                                 return (
                                     <li
                                         key={item.title}
-                                        className="flex container my-5"
+                                        
                                     >
-                                        <Image
-                                            alt={item.title}
-                                            src={item.image}
-                                            height={30}
-                                            width={30}
-                                        />
-                                        <p className="my-auto pl-6">
-                                            {item.title}
-                                        </p>
+                                        <Link href="">
+                                            <a className="flex container my-5">
+                                                <div className="relative w-50 h-50">
+                                                    <Image
+                                                        alt={item.title}
+                                                        src={item.image}
+                                                        height={40}
+                                                        width={40}
+                                                    />
+                                                </div>
+                                                <p className="my-auto pl-6 hidden lg:block">
+                                                    {item.title}
+                                                </p>
+                                            </a>
+                                        </Link>
                                     </li>
                                 );
                             })}
@@ -42,7 +48,7 @@ export default function DashboardLayout({
                     </div>
                 </div>
             </div>
-            <div className="w-full">
+            <div className="w-full max-h-full">
                 <div className="p-10">
                     <div className="h-20 border-b w-full mx-auto align-middle">
                         <ul className="flex float-right align-middle">
@@ -62,7 +68,7 @@ export default function DashboardLayout({
                     </div>
                 </div>
                 <div className="overflow-y-auto h-3/4">
-                    <div className="p-20 flex flex-wrap">{children}</div>
+                    <div className="px-10 flex flex-wrap lg:px-20">{children}</div>
                 </div>
             </div>
             <StatusBar status={status} />

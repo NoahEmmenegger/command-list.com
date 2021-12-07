@@ -7,7 +7,7 @@ export default function StatusBar({ status }) {
     return (
         <div
             className={
-                "fixed bottom-5 text-2xl  rounded-2xl left-1/2 px-10 py-2 text-white " +
+                "fixed bottom-5 text-2xl transform -translate-x-1/3 rounded-2xl left-1/2 px-10 py-2 text-white " +
                 status.style
             }
         >
@@ -19,11 +19,11 @@ export default function StatusBar({ status }) {
 
 export const Status = {
     HIDDEN: {
-        style: "hidden",
+        style: " hidden",
         title: "",
     },
     LOADING: {
-        style: "bg-blue-400",
+        style: " bg-blue-400",
         title: "Loading...",
     },
     SUCCESSFULLY: {
