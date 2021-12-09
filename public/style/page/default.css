@@ -80,6 +80,10 @@
     font-size: 3vw;
 }
 
+footer {
+    background-color: #909090;
+}
+
 @media screen and (max-width: 992px) {
     .command_list h2 {
         color: #909090;
