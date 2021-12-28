@@ -23,11 +23,7 @@ export default function Dashboard() {
     }, [auth]);
 
     if (auth.user === null) {
-        return (
-            <DashboardLayout>
-                <Loading />
-            </DashboardLayout>
-        );
+        return <Loading />;
     }
 
     if (auth.user === false) {
@@ -53,7 +49,7 @@ export default function Dashboard() {
     ];
 
     return (
-        <DashboardLayout title="Dashboard" menuItems={menuItems}>
+        <>
             {pages.map((page) => {
                 return (
                     <Link
@@ -86,6 +82,6 @@ export default function Dashboard() {
                 onClose={() => setIsModalShown(false)}
                 onNewPage={(newPage) => setPages([...pages, newPage])}
             />
-        </DashboardLayout>
+        </>
     );
 }

@@ -2,6 +2,8 @@ import "../style/index.css";
 import { ProvideAuth } from "../utils/auth";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import DashboardLayout, { Context } from "../components/dashboard/Layout";
+import React from "react";
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
@@ -17,7 +19,9 @@ function MyApp({ Component, pageProps }) {
     if (router.pathname.startsWith("/dashboard")) {
         return (
             <ProvideAuth>
-                <Component {...pageProps} />
+                <DashboardLayout>
+                    <Component {...pageProps} />
+                </DashboardLayout>
             </ProvideAuth>
         );
     }

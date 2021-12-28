@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import DashboardLayout from "../../../components/dashboard/Layout";
 import EditSection from "../../../components/dashboard/Section";
 import Loading from "../../../components/Loading";
 import { useAuth } from "../../../utils/auth";
@@ -11,16 +10,36 @@ import Link from "next/link";
 import Image from "next/image";
 import NewSectionModal from "../../../components/dashboard/NewSectionModal";
 import { Status } from "../../../components/general/StatusBar";
+import { useContext } from "react";
+import { Context } from "../../../components/dashboard/Layout";
+
+const menuItems = [
+    {
+        image: "/icons/edit.svg",
+        title: "Edit",
+        href: "",
+    },
+    {
+        image: "/icons/edit.svg",
+        title: "Analytics",
+        href: `analytics`,
+    },
+];
 
 export default function Edit() {
     const router = useRouter();
     const auth = useAuth();
+    const [context, setContext] = useContext(Context);
 
     const { slug } = router.query;
 
     const [page, setPage] = useState(null);
     const [isAddSectionShown, setIsAddSectionShown] = useState(false);
     const [status, setStatus] = useState(Status.HIDDEN);
+
+    useEffect(() => {
+        setContext({ menuItems });
+    }, [setContext]);
 
     useEffect(() => {
         const initPage = async () => {
@@ -40,29 +59,12 @@ export default function Edit() {
     }, [page]);
 
     if (!page || Object.keys(page).length === 0) {
-        return (
-            <DashboardLayout>
-                <Loading />
-            </DashboardLayout>
-        );
+        return <Loading />;
     }
 
     if (!auth.userId || page.ownerUid !== auth.userId) {
         return <Custom404 />;
     }
-
-    const menuItems = [
-        {
-            image: "/icons/edit.svg",
-            title: "Edit",
-            href: "",
-        },
-        {
-            image: "/icons/edit.svg",
-            title: "Analythics",
-            href: "",
-        },
-    ];
 
     const reorder = (list, startIndex, endIndex) => {
         console.log(startIndex, endIndex);
@@ -90,11 +92,7 @@ export default function Edit() {
     };
 
     return (
-        <DashboardLayout
-            title={page.title}
-            menuItems={menuItems}
-            status={status}
-        >
+        <>
             <Link href={`/page/${page.title.toLowerCase()}`}>
                 <a target="_blank" className="btn flex m-auto mr-0 mb-4">
                     <p className="m-auto mr-3">view</p>
@@ -170,6 +168,6 @@ export default function Edit() {
                     })
                 }
             />
-        </DashboardLayout>
+        </>
     );
 }

@@ -19,7 +19,14 @@ export default function Layout({ children }) {
         <>
             <header>
                 <nav className="flex justify-between mx-auto p-5">
-                    <h>Command-list.com</h>
+                    <div className="relative h-10 w-40">
+                        <Image
+                            alt="logo"
+                            src="/logos/logo.png"
+                            layout="fill"
+                            objectFit="contain"
+                        />
+                    </div>
                     <div
                         className="relative h-10 w-10 cursor-pointer lg:hidden"
                         onClick={() => setIsHamburgerShow(true)}
