@@ -1,8 +1,8 @@
 import { useAuth } from "../../utils/auth";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import DashboardLayout from "../../components/dashboard/Layout";
+import DashboardLayout, { Context } from "../../components/dashboard/Layout";
 import { getPagesOfOwnerId } from "../../utils/pages";
 import Loading from "../../components/Loading";
 import Custom404 from "../404";
@@ -10,6 +10,7 @@ import NewPageModal from "../../components/dashboard/NewPageModal";
 
 export default function Dashboard() {
     const auth = useAuth();
+    const [context, setContext] = useContext(Context);
 
     const [pages, setPages] = useState([]);
     const [isModalShown, setIsModalShown] = useState(false);
@@ -22,6 +23,29 @@ export default function Dashboard() {
         getPages();
     }, [auth]);
 
+    useEffect(() => {
+        const menuItems = [
+            {
+                image: "/icons/edit.svg",
+                title: "Item 1",
+                href: "",
+            },
+            {
+                image: "/icons/edit.svg",
+                title: "Item 2",
+                href: "",
+            },
+            {
+                image: "/icons/edit.svg",
+                title: "Item 3",
+                href: "",
+            },
+        ];
+
+        setContext({ menuItems, title: "Dashboard" });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     if (auth.user === null) {
         return <Loading />;
     }
@@ -29,24 +53,6 @@ export default function Dashboard() {
     if (auth.user === false) {
         return <Custom404 />;
     }
-
-    const menuItems = [
-        {
-            image: "/icons/edit.svg",
-            title: "Item 1",
-            href: "",
-        },
-        {
-            image: "/icons/edit.svg",
-            title: "Item 2",
-            href: "",
-        },
-        {
-            image: "/icons/edit.svg",
-            title: "Item 3",
-            href: "",
-        },
-    ];
 
     return (
         <>

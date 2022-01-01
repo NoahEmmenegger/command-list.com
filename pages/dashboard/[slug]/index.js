@@ -25,7 +25,6 @@ export default function Edit() {
 
     useEffect(() => {
         const initPage = async () => {
-            console.log(slug);
             const fetchPage = await getPageBySlug(slug);
             const menuItems = [
                 {
@@ -34,15 +33,21 @@ export default function Edit() {
                     href: `${slug}`,
                 },
                 {
-                    image: "/icons/edit.svg",
+                    image: "/icons/analytics.svg",
                     title: "Analytics",
                     href: `${slug}/analytics`,
+                },
+                {
+                    image: "/icons/back.svg",
+                    title: "Back to Dashboard",
+                    href: `/dashboard`,
                 },
             ];
             setContext({ ...context, menuItems, title: fetchPage.title });
             setPage(fetchPage);
         };
         initPage();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [slug]);
 
     useEffect(() => {
@@ -53,6 +58,7 @@ export default function Edit() {
                 setContext({ ...context, status: Status.SUCCESSFULLY });
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
     if (!page || Object.keys(page).length === 0) {
