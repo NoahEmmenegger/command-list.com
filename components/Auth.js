@@ -1,27 +1,27 @@
 import Link from "next/link";
 
-export default function Auth({ onclick }) {
+export default function Auth({ onclick, title }) {
     let email = "";
     let pass = "";
 
     return (
-        <div className="flex flex-col">
-            <Link href="/">Back</Link>
-            <div className="m-1">
-                <p>Email</p>
+        <div className="flex flex-col px-5 max-w-2xl mx-auto">
+            <h1>{title}</h1>
+            <div className="my-5">
                 <input
                     type="email"
-                    className="border-2"
+                    className="border-2 rounded-md w-full h-10"
+                    placeholder="Email"
                     onChange={(e) => {
                         email = e.target.value;
                     }}
                 />
             </div>
-            <div className="m-1">
-                <p>Password</p>
+            <div className="my-5">
                 <input
                     type="password"
-                    className="border-2"
+                    className="border-2 rounded-md w-full h-10"
+                    placeholder="Password"
                     onChange={(e) => {
                         pass = e.target.value;
                     }}
@@ -29,7 +29,7 @@ export default function Auth({ onclick }) {
             </div>
 
             <input
-                className="m-1 btn"
+                className="mt-10 btn"
                 type="submit"
                 onClick={() => {
                     onclick({ email, pass });

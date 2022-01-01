@@ -16,17 +16,21 @@ export default function Layout({ children }) {
     }, [router.route]);
 
     return (
-        <>
+        <div className="min-h-screen flex flex-col">
             <header>
                 <nav className="flex justify-between mx-auto p-5">
-                    <div className="relative h-10 w-40">
-                        <Image
-                            alt="logo"
-                            src="/logos/logo.png"
-                            layout="fill"
-                            objectFit="contain"
-                        />
-                    </div>
+                    <Link href="/">
+                        <a>
+                            <div className="relative h-10 w-40">
+                                <Image
+                                    alt="logo"
+                                    src="/logos/logo.png"
+                                    layout="fill"
+                                    objectFit="contain"
+                                />
+                            </div>
+                        </a>
+                    </Link>
                     <div
                         className="relative h-10 w-10 cursor-pointer lg:hidden"
                         onClick={() => setIsHamburgerShow(true)}
@@ -39,26 +43,27 @@ export default function Layout({ children }) {
                         />
                     </div>
                     <ul className="float-right align-middle hidden lg:flex">
-                        <li className="px-10 m-auto">
-                            <Link href="/register">Register</Link>
-                        </li>
-                        <li className="px-10 m-auto">
-                            <Link href="/dashboard">Dashboard</Link>
-                        </li>
-                        <li className="px-10 m-auto">
-                            <Link href="/create">Create Page</Link>
-                        </li>
                         {auth.user ? (
-                            <button
-                                onClick={auth.signout}
-                                className="px-10 btn"
-                            >
-                                Sign Out
-                            </button>
+                            <>
+                                <li className="px-10 m-auto">
+                                    <Link href="/dashboard">Dashboard</Link>
+                                </li>
+                                <button
+                                    onClick={auth.signout}
+                                    className="px-10 btn"
+                                >
+                                    Sign Out
+                                </button>
+                            </>
                         ) : (
-                            <Link href="/login">
-                                <a className="px-10 btn">Login</a>
-                            </Link>
+                            <>
+                                <li className="px-10 m-auto">
+                                    <Link href="/register">Register</Link>
+                                </li>
+                                <Link href="/login">
+                                    <a className="px-10 btn">Login</a>
+                                </Link>
+                            </>
                         )}
                     </ul>
                 </nav>
@@ -102,8 +107,8 @@ export default function Layout({ children }) {
                     )}
                 </div>
             </header>
-            <main>{children}</main>
+            <main className="my-auto h-full">{children}</main>
             <Footer />
-        </>
+        </div>
     );
 }

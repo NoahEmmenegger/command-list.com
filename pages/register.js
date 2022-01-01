@@ -16,5 +16,5 @@ export default function Home() {
             });
     };
 
-    return <Auth onclick={signUp} />;
+    return <Auth title="Create an account" onclick={signUp} />;
 }

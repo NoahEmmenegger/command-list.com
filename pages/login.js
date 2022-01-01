@@ -16,5 +16,5 @@ export default function Home() {
             });
     };
 
-    return <Auth onclick={signIn} />;
+    return <Auth title="Welcome back!" onclick={signIn} />;
 }

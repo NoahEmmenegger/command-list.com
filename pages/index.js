@@ -1,8 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "../utils/auth";
 
 export default function Home() {
+    const auth = useAuth();
+
     return (
         <div>
             <Head>
@@ -20,14 +23,25 @@ export default function Home() {
                         <h1 className="text-6xl font-bold m-auto">
                             Create command pages for free
                         </h1>
-                        <Link href="/login">
-                            <a
-                                className="btn m-auto mt-10 text-lg px-8"
-                                style={{ width: "fit-content" }}
-                            >
-                                Start now
-                            </a>
-                        </Link>
+                        {auth.user ? (
+                            <Link href="/dashboard">
+                                <a
+                                    className="btn m-auto mt-10 text-lg px-8"
+                                    style={{ width: "fit-content" }}
+                                >
+                                    Go to dashboard
+                                </a>
+                            </Link>
+                        ) : (
+                            <Link href="/login">
+                                <a
+                                    className="btn m-auto mt-10 text-lg px-8"
+                                    style={{ width: "fit-content" }}
+                                >
+                                    Start now
+                                </a>
+                            </Link>
+                        )}
                     </div>
                     <div className="relative m-auto h-full w-full">
                         <Image
