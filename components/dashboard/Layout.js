@@ -6,7 +6,7 @@ import React from "react";
 
 export const Context = React.createContext();
 
-export default function DashboardLayout({ children, title, status }) {
+export default function DashboardLayout({ children }) {
     const [context, setContext] = React.useState({});
     const auth = useAuth();
 
@@ -16,7 +16,7 @@ export default function DashboardLayout({ children, title, status }) {
                 <div className="lg:w-80">
                     <div className="h-screen bg-darkgray p-2 text-white lg:p-10">
                         <h1 className="font-bold text-primary filter drop-shadow-lg hidden lg:block">
-                            {title}
+                            {context.title}
                         </h1>
                         <div className="h-full flex">
                             <ul className="my-auto">
@@ -71,7 +71,7 @@ export default function DashboardLayout({ children, title, status }) {
                         </div>
                     </div>
                 </div>
-                <StatusBar status={status} />
+                <StatusBar status={context.status} />
             </div>
         </Context.Provider>
     );

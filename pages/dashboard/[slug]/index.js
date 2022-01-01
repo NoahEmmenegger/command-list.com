@@ -13,19 +13,6 @@ import { Status } from "../../../components/general/StatusBar";
 import { useContext } from "react";
 import { Context } from "../../../components/dashboard/Layout";
 
-const menuItems = [
-    {
-        image: "/icons/edit.svg",
-        title: "Edit",
-        href: "",
-    },
-    {
-        image: "/icons/edit.svg",
-        title: "Analytics",
-        href: `analytics`,
-    },
-];
-
 export default function Edit() {
     const router = useRouter();
     const auth = useAuth();
@@ -35,25 +22,35 @@ export default function Edit() {
 
     const [page, setPage] = useState(null);
     const [isAddSectionShown, setIsAddSectionShown] = useState(false);
-    const [status, setStatus] = useState(Status.HIDDEN);
-
-    useEffect(() => {
-        setContext({ menuItems });
-    }, [setContext]);
 
     useEffect(() => {
         const initPage = async () => {
-            setPage(await getPageBySlug(slug));
+            console.log(slug);
+            const fetchPage = await getPageBySlug(slug);
+            const menuItems = [
+                {
+                    image: "/icons/edit.svg",
+                    title: "Edit",
+                    href: `${slug}`,
+                },
+                {
+                    image: "/icons/edit.svg",
+                    title: "Analytics",
+                    href: `${slug}/analytics`,
+                },
+            ];
+            setContext({ ...context, menuItems, title: fetchPage.title });
+            setPage(fetchPage);
         };
         initPage();
     }, [slug]);
 
     useEffect(() => {
         if (page && Object.keys(page).length !== 0) {
-            setStatus(Status.LOADING);
+            setContext({ ...context, status: Status.LOADING });
             console.log("db update", page.sections);
             updatePage(page).then(() => {
-                setStatus(Status.SUCCESSFULLY);
+                setContext({ ...context, status: Status.SUCCESSFULLY });
             });
         }
     }, [page]);
