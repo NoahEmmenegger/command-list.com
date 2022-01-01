@@ -10,7 +10,6 @@ export default function Auth({ onclick, title }) {
             <div className="my-5">
                 <input
                     type="email"
-                    className="border-2 rounded-md w-full h-10"
                     placeholder="Email"
                     onChange={(e) => {
                         email = e.target.value;
@@ -20,7 +19,6 @@ export default function Auth({ onclick, title }) {
             <div className="my-5">
                 <input
                     type="password"
-                    className="border-2 rounded-md w-full h-10"
                     placeholder="Password"
                     onChange={(e) => {
                         pass = e.target.value;
