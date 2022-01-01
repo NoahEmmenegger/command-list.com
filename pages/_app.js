@@ -3,11 +3,21 @@ import { ProvideAuth } from "../utils/auth";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import DashboardLayout, { Context } from "../components/dashboard/Layout";
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
+
+    useEffect(() => {
+        const handleRouteChange = (url) => {
+            ga.pageview(url);
+        };
+        router.events.on("routeChangeComplete", handleRouteChange);
+        return () => {
+            router.events.off("routeChangeComplete", handleRouteChange);
+        };
+    }, [router.events]);
 
     if (router.pathname === "/page/[slug]") {
         return (
