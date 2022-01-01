@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import "firebase/auth";
 
 import { firebase } from "./firebase";
+import { useRouter } from "next/router";
 
 const authContext = createContext();
 
@@ -17,7 +18,10 @@ export const useAuth = () => {
 function useProvideAuth() {
     const [user, setUser] = useState(null);
 
+    const router = useRouter();
+
     const signin = (email, password) => {
+        console.log(email, password);
         return firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
@@ -43,6 +47,7 @@ function useProvideAuth() {
             .signOut()
             .then(() => {
                 setUser(false);
+                router.push("/");
             });
     };
 

@@ -1,20 +1,23 @@
 import { useAuth } from "../utils/auth";
 import { useRouter } from "next/router";
 import Auth from "../components/Auth";
+import { useState } from "react";
 
 export default function Home() {
     const auth = useAuth();
     const router = useRouter();
 
-    const signIn = ({ email, pass }) => {
-        auth.signin(email, pass)
+    const [error, setError] = useState(null);
+
+    const signIn = ({ email, password }) => {
+        auth.signin(email, password)
             .then(() => {
                 router.push("/dashboard");
             })
             .catch((error) => {
-                console.log("An error occurred.");
+                setError(error.message);
             });
     };
 
-    return <Auth title="Welcome back!" onclick={signIn} />;
+    return <Auth title="Welcome back!" onclick={signIn} error={error} />;
 }
