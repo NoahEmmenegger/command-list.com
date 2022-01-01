@@ -24,25 +24,7 @@ export default function Dashboard() {
     }, [auth]);
 
     useEffect(() => {
-        const menuItems = [
-            {
-                image: "/icons/edit.svg",
-                title: "Item 1",
-                href: "",
-            },
-            {
-                image: "/icons/edit.svg",
-                title: "Item 2",
-                href: "",
-            },
-            {
-                image: "/icons/edit.svg",
-                title: "Item 3",
-                href: "",
-            },
-        ];
-
-        setContext({ menuItems, title: "Dashboard" });
+        setContext({ title: "Dashboard" });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
