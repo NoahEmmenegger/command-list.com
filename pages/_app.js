@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 import DashboardLayout, { Context } from "../components/dashboard/Layout";
 import React from "react";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
@@ -20,6 +21,13 @@ function MyApp({ Component, pageProps }) {
         return (
             <ProvideAuth>
                 <DashboardLayout>
+                    <Head>
+                        <title>Dashboard</title>
+                        <meta
+                            name="description"
+                            content="This is your Dashboard"
+                        />
+                    </Head>
                     <Component {...pageProps} />
                 </DashboardLayout>
             </ProvideAuth>

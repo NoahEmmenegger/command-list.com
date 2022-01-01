@@ -1,45 +1,34 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
     return (
         <>
-            <footer className="bg-darkgray p-10 text-white">
-                <h1>Footer</h1>
-                <div>logo</div>
-                <a href="https://www.freepik.com/vectors/people">
-                    People vector created by pch.vector - www.freepik.com
-                </a>
-                <div className="invite_footer">
-                    <h2>general_question</h2>
+            <footer className="bg-darkgray text-white">
+                <div className="flex p-20">
+                    <div className="w-1/2">
+                        <h1>Command-List.com</h1>
+                        <h2 className="text-lightgray">
+                            Want to create your own command list? - It is
+                            completely free!
+                        </h2>
+                    </div>
                     <div>
-                        <Link href="/">Link</Link>
-                    </div>
-                </div>
-                <div className="flex">
-                    <div className="d-block">
-                        <span>CommandList</span>
-                        <p>general_slogan</p>
-                    </div>
-                    <div className="flex">
-                        <div className="flex-row">
-                            <Link href="/">Link</Link>
-                            <Link href="/">Link</Link>
-                            <Link href="/">Link</Link>
-                        </div>
-                        <div>
-                            <Link href="/">Link</Link>
-                            <Link href="/">Link</Link>
-                            <Link href="/">Link</Link>
-                        </div>
-                        <div>
-                            <Link href="/">Link</Link>
-                            <Link href="mailto:">Contact</Link>
+                        <div className="flex text-lightgray">
+                            <div className="flex flex-col p-5">
+                                <Link href="/">Home</Link>
+                                <Link href="/dashboard">Dashboard</Link>
+                            </div>
+                            <div className="flex flex-col p-5">
+                                <Link href="/">Terms</Link>
+                                <Link href="mailto:">Contact</Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="footer_info">
+                <div className="flex text-xs flex-row justify-between text-lightgray">
                     <p>© CommandList - 2021</p>
-                    <p>code with ♥</p>
+                    <p>code with ♥ by Lythus</p>
                 </div>
             </footer>
         </>

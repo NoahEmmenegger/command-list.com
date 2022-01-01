@@ -24,7 +24,7 @@ export default function Layout({ children }) {
                             <div className="relative h-10 w-40">
                                 <Image
                                     alt="logo"
-                                    src="/logos/logo.png"
+                                    src="/logo.png"
                                     layout="fill"
                                     objectFit="contain"
                                 />

@@ -16,6 +16,7 @@ export default function Page({ page }) {
         <div className="bg-darkgray min-h-screen">
             <Head>
                 <title>{page.title} | Commands</title>
+                <meta name="description" content={page.description} />
                 {getTemplateImport(page.template)}
             </Head>
             <h1 className="text-5xl text-center font-bold text-white pt-32">
