@@ -48,6 +48,7 @@ export default function Home() {
                             src="/dashboard_preview.png"
                             layout="fill"
                             objectFit="contain"
+                            property
                         />
                     </div>
                 </div>

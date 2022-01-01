@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import DashboardLayout, { Context } from "../components/dashboard/Layout";
 import React, { useEffect } from "react";
 import Head from "next/head";
+import * as ga from "../lib/ga";
 
 function MyApp({ Component, pageProps }) {
     const router = useRouter();
