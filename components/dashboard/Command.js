@@ -6,7 +6,7 @@ export default function EditCommand({ command, onUpdate }) {
         command.description
     );
     return (
-        <div key={command.id}>
+        <div key={command.id} className="flex">
             <input
                 type="text"
                 value={newCommandName}
