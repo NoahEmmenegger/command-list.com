@@ -1,4 +1,4 @@
-import { firestore } from "./firebase";
+import { firestore } from "../utils/firebase/clientApp";
 
 const getPageBySlug = async (slug) => {
     const page = await (
