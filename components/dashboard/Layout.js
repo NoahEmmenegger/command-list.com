@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import StatusBar from "../general/StatusBar";
 import React from "react";
+import ProfileDropdown from "../ProfileDropdown";
 
 export const Context = React.createContext();
 
@@ -51,12 +52,7 @@ export default function DashboardLayout({ children }) {
                         <div className="h-20 border-b w-full mx-auto align-middle">
                             <ul className="flex float-right align-middle">
                                 {auth.user ? (
-                                    <button
-                                        onClick={auth.signout}
-                                        className="px-10 btn"
-                                    >
-                                        {auth.user.email}
-                                    </button>
+                                    <ProfileDropdown />
                                 ) : (
                                     <li className="px-10 btn">
                                         <Link href="/login">Login</Link>

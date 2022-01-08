@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Layout({ children }) {
     const auth = useAuth();
@@ -45,15 +46,7 @@ export default function Layout({ children }) {
                     <ul className="float-right align-middle hidden lg:flex">
                         {auth.user ? (
                             <>
-                                <li className="px-10 m-auto">
-                                    <Link href="/dashboard">Dashboard</Link>
-                                </li>
-                                <button
-                                    onClick={auth.signout}
-                                    className="px-10 btn"
-                                >
-                                    Sign Out
-                                </button>
+                                <ProfileDropdown />
                             </>
                         ) : (
                             <>
@@ -83,15 +76,15 @@ export default function Layout({ children }) {
                         />
                     </div>
                     <ul className="flex flex-col m-auto">
-                        <li className="m-auto py-3">
-                            <Link href="/register">Register</Link>
-                        </li>
-                        <li className="m-auto py-3">
-                            <Link href="/dashboard">Dashboard</Link>
-                        </li>
-                        <li className="m-auto py-3">
-                            <Link href="/create">Create Page</Link>
-                        </li>
+                        {auth.user ? (
+                            <li className="m-auto py-3">
+                                <Link href="/dashboard">Dashboard</Link>
+                            </li>
+                        ) : (
+                            <li className="m-auto py-3">
+                                <Link href="/register">Register</Link>
+                            </li>
+                        )}
                     </ul>
                     {auth.user ? (
                         <button
