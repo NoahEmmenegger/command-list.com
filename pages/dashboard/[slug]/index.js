@@ -33,6 +33,11 @@ export default function Edit() {
                     href: `${slug}`,
                 },
                 {
+                    image: "/icons/gear.svg",
+                    title: "General",
+                    href: `${slug}/general`,
+                },
+                {
                     image: "/icons/analytics.svg",
                     title: "Analytics",
                     href: `${slug}/analytics`,

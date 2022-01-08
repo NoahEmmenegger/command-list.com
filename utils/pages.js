@@ -53,6 +53,7 @@ const createPage = async (ownerUid, title, description) => {
 };
 
 const updatePage = async (newPage) => {
+    console.log(newPage);
     return new Promise((res, rej) => {
         firestore
             .collection("pages")

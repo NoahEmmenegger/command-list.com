@@ -12,8 +12,11 @@
     h3 {
         @apply text-lg;
     }
-    input:not([type="submit"]) {
+    input:not([type="submit"]):not([type="radio"]) {
         @apply border-2 rounded-md w-full h-10 px-5;
+    }
+    input[type="radio"] {
+        @apply m-5;
     }
 
     .btn {

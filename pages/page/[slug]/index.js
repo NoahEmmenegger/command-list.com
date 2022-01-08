@@ -17,6 +17,7 @@ export default function Page({ page }) {
             <Head>
                 <title>{page.title} | Commands</title>
                 <meta name="description" content={page.description} />
+                <meta name="keywords" content={page.keywords} />
                 {getTemplateImport(page.template)}
             </Head>
             <h1 className="text-5xl text-center font-bold text-white pt-32">

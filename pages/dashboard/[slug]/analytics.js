@@ -21,6 +21,11 @@ export default function Analytics() {
                     href: `/dashboard/${slug}`,
                 },
                 {
+                    image: "/icons/gear.svg",
+                    title: "General",
+                    href: `/dashboard/${slug}/general`,
+                },
+                {
                     image: "/icons/analytics.svg",
                     title: "Analytics",
                     href: `/dashboard/${slug}/analytics`,

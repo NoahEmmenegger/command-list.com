@@ -12,10 +12,6 @@ class MyDocument extends Document {
                 <Head>
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="shortcut icon" href="/favicon.ico" />
-                    <meta
-                        name="keywords"
-                        content="command, commands, developer, discord, create page"
-                    />
                     <meta name="robots" content="index" />
                     <meta name="robots" content="follow" />
 
