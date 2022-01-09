@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Image from "next/image";
+import { useAuth } from "../utils/auth";
 
 export default function Auth({ onclick, title, error }) {
+    const auth = useAuth();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [providerError, setProviderError] = useState("");
 
     return (
         <div className="flex flex-col px-5 max-w-2xl mx-auto pt-10">
@@ -37,7 +41,11 @@ export default function Auth({ onclick, title, error }) {
                 }}
             />
             <div className="mt-20">
-                <button className="provider">
+                <p className="text-red-600">{providerError}</p>
+                <button
+                    className="provider"
+                    onClick={() => auth.signinWithProvider()}
+                >
                     <div className="p-4">
                         <div className="h-7 w-7 relative p-3">
                             <Image
@@ -49,7 +57,14 @@ export default function Auth({ onclick, title, error }) {
                     </div>
                     <span className="my-auto">Sign in with Google</span>
                 </button>
-                <button className="provider">
+                <button
+                    className="provider"
+                    onClick={() =>
+                        auth.signinWithProvider("github").catch((e) => {
+                            setProviderError(e.message);
+                        })
+                    }
+                >
                     <div className="p-4">
                         <div className="h-7 w-7 relative p-3">
                             <Image

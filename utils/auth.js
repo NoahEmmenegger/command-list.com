@@ -31,6 +31,26 @@ function useProvideAuth() {
             });
     };
 
+    const signinWithProvider = (providerName) => {
+        let provider = null;
+        switch (providerName) {
+            case "github":
+                provider = new firebase.auth.GithubAuthProvider();
+                break;
+
+            default:
+                provider = new firebase.auth.GoogleAuthProvider();
+        }
+        return firebase
+            .auth()
+            .signInWithPopup(provider)
+            .then((response) => {
+                setUser(response.user);
+                router.push("/dashboard");
+                return response.user;
+            });
+    };
+
     const signup = (email, password) => {
         return firebase
             .auth()
@@ -87,6 +107,7 @@ function useProvideAuth() {
         userId: user && user.uid,
         user: user,
         signin,
+        signinWithProvider,
         signup,
         signout,
         sendPasswordResetEmail,
