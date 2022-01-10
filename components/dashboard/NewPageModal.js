@@ -1,6 +1,7 @@
 import Modal from "../Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPage } from "../../utils/pages";
+const axios = require("axios");
 
 export default function NewPageModal({
     isShown,
@@ -10,6 +11,19 @@ export default function NewPageModal({
 }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [doesTitleExists, setDoesTitleExists] = useState(false);
+
+    useEffect(() => {
+        if (title) {
+            axios
+                .post("/api/doesPageExists", {
+                    pageName: title,
+                })
+                .then((result) => {
+                    setDoesTitleExists(result.data.status);
+                });
+        }
+    }, [title]);
 
     return (
         <Modal isShown={isShown} onclose={() => onClose()}>
@@ -21,9 +35,18 @@ export default function NewPageModal({
                         <input
                             type="text"
                             placeholder="value"
+                            style={
+                                doesTitleExists ? { borderColor: "red" } : null
+                            }
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
+                        {doesTitleExists && (
+                            <p className="text-red-600">
+                                This title is already in use. Please use another
+                                title.
+                            </p>
+                        )}
                     </div>
                     <div>
                         <p>Description</p>

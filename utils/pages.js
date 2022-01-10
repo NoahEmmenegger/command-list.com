@@ -63,6 +63,12 @@ const updatePage = async (newPage) => {
     });
 };
 
+const doesPageExists = async (pageName) => {
+    return !!(await (
+        await firestore.collection("pages").doc(pageName).get()
+    ).data());
+};
+
 export {
     getPageBySlug,
     getPages,
@@ -70,4 +76,5 @@ export {
     getPageSlugs,
     createPage,
     updatePage,
+    doesPageExists,
 };
