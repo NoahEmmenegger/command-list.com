@@ -4,11 +4,23 @@ import Image from "next/image";
 import StatusBar from "../general/StatusBar";
 import React from "react";
 import ProfileDropdown from "../ProfileDropdown";
+import { Status } from "../general/StatusBar";
+export const Context = React.createContext({});
 
-export const Context = React.createContext();
+type MenuItem = {
+    title: string,
+    href: string,
+    image: string,
+}
+
+type ContextType = {
+    title: string,
+    menuItems: Array<MenuItem>,
+    status: any
+}
 
 export default function DashboardLayout({ children }) {
-    const [context, setContext] = React.useState({});
+    const [context, setContext] = React.useState<ContextType>({ title: "", menuItems: [], status: Status.HIDDEN });
     const auth = useAuth();
 
     return (

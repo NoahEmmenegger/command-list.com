@@ -1,21 +1,32 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import "firebase/auth";
 
-import { firebase } from "../utils/firebase/clientApp";
+import { firebase } from "./firebase/clientApp";
 import { useRouter } from "next/router";
 
-const authContext = createContext();
+
+type AuthType = {
+    userId: string
+    user: firebase.User,
+    signin: (email: any, password: any) => Promise<firebase.User>,
+    signinWithProvider: (providerName: any) => Promise<firebase.User>,
+    signup: (email: any, password: any) => Promise<firebase.User>,
+    signout: () => Promise<void>,
+    sendPasswordResetEmail: (email: any) => Promise<boolean>,
+}
+
+const authContext = createContext<AuthType | null>(null);
 
 export function ProvideAuth({ children }) {
-    const auth = useProvideAuth();
-    return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+    const auth: AuthType = useProvideAuth();
+    return <authContext.Provider value={auth}> {children} </authContext.Provider>;
 }
 
 export const useAuth = () => {
     return useContext(authContext);
 };
 
-function useProvideAuth() {
+function useProvideAuth(): AuthType {
     const [user, setUser] = useState(null);
 
     const router = useRouter();
@@ -80,17 +91,6 @@ function useProvideAuth() {
             });
     };
 
-    const confirmPasswordReset = (password, code) => {
-        const resetCode = code || getFromQueryString("oobCode");
-
-        return firebase
-            .auth()
-            .confirmPasswordReset(resetCode, password)
-            .then(() => {
-                return true;
-            });
-    };
-
     useEffect(() => {
         const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -111,10 +111,5 @@ function useProvideAuth() {
         signup,
         signout,
         sendPasswordResetEmail,
-        confirmPasswordReset,
     };
 }
-
-const getFromQueryString = (key) => {
-    return queryString.parse(window.location.search)[key];
-};

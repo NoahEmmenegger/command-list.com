@@ -1,6 +1,6 @@
 import EditCommand from "./Command";
 import { Draggable } from "react-beautiful-dnd";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import NewCommandModal from "./NewCommandModal";
 
@@ -12,6 +12,12 @@ export default function EditSection({ section, index, onUpdateSection }) {
     if (!section) {
         return null;
     }
+
+    let style = {
+        "--tw-rotate": isHidden
+            ? "180deg"
+            : "0deg",
+    } as React.CSSProperties;
 
     return (
         <>
@@ -61,11 +67,7 @@ export default function EditSection({ section, index, onUpdateSection }) {
                                         className={
                                             "transform transition duration-200"
                                         }
-                                        style={{
-                                            "--tw-rotate": isHidden
-                                                ? "180deg"
-                                                : "0deg",
-                                        }}
+                                        style={style}
                                         onClick={() => setIsHidden(!isHidden)}
                                     >
                                         <Image
