@@ -3,21 +3,26 @@ import "firebase/auth";
 
 import { firebase } from "./firebase/clientApp";
 import { useRouter } from "next/router";
+import { Registration, SignIn } from "../types/auth";
 
 
 type AuthType = {
-    userId: string
-    user: firebase.User,
-    signin: (email: any, password: any) => Promise<firebase.User>,
-    signinWithProvider: (providerName: any) => Promise<firebase.User>,
-    signup: (email: any, password: any) => Promise<firebase.User>,
+    userId: string | null,
+    user: firebase.User | null,
+    signin: (u: SignIn) => Promise<firebase.User | null>,
+    signinWithProvider: (providerName: any) => Promise<firebase.User | null>,
+    signup: (r: Registration) => Promise<firebase.User | null>,
     signout: () => Promise<void>,
     sendPasswordResetEmail: (email: any) => Promise<boolean>,
 }
 
-const authContext = createContext<AuthType | null>(null);
+const authContext = createContext<AuthType>(useProvideAuth());
 
-export function ProvideAuth({ children }) {
+type ProvideAuth = {
+    children: React.ReactNode
+}
+
+export function ProvideAuth({ children }: ProvideAuth) {
     const auth: AuthType = useProvideAuth();
     return <authContext.Provider value={auth}> {children} </authContext.Provider>;
 }
@@ -31,8 +36,7 @@ function useProvideAuth(): AuthType {
 
     const router = useRouter();
 
-    const signin = (email: string, password: string) => {
-        console.log(email, password);
+    const signin = ({ email, password }: SignIn) => {
         return firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
@@ -62,7 +66,7 @@ function useProvideAuth(): AuthType {
             });
     };
 
-    const signup = (email: string, password: string) => {
+    const signup = ({ email, password }: Registration) => {
         return firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
@@ -82,7 +86,7 @@ function useProvideAuth(): AuthType {
             });
     };
 
-    const sendPasswordResetEmail = (email) => {
+    const sendPasswordResetEmail = (email: string) => {
         return firebase
             .auth()
             .sendPasswordResetEmail(email)

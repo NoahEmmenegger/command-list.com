@@ -5,6 +5,8 @@ import StatusBar from "../general/StatusBar";
 import React from "react";
 import ProfileDropdown from "../ProfileDropdown";
 import { Status } from "../general/StatusBar";
+
+
 export const Context = React.createContext({});
 
 type MenuItem = {
@@ -19,7 +21,11 @@ type ContextType = {
     status: any
 }
 
-export default function DashboardLayout({ children }) {
+type DashboardLayoutProps = {
+    children: any
+}
+
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
     const [context, setContext] = React.useState<ContextType>({ title: "", menuItems: [], status: Status.HIDDEN });
     const auth = useAuth();
 

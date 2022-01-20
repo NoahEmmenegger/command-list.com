@@ -1,4 +1,11 @@
-export default function Command({ template, command }) {
+import { Command } from "../../types/models";
+
+type CommandProps = {
+    template: string,
+    command: Command
+}
+
+export default function Command({ template, command }: CommandProps) {
     switch (template) {
         case "light":
             return <div>test</div>;
@@ -8,7 +15,7 @@ export default function Command({ template, command }) {
     }
 }
 
-const defaultTemplate = (command) => {
+const defaultTemplate = (command: Command) => {
     return (
         <div className="">
             <p className="">

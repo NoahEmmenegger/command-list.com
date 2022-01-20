@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ContextType, useEffect, useState } from "react";
 import { useContext } from "react";
 import { useRouter } from "next/router";
 import { Context } from "../../../components/dashboard/Layout";
@@ -6,7 +6,7 @@ import { getPageBySlug } from "../../../utils/pages";
 
 export default function Analytics() {
     const router = useRouter();
-    const [context, setContext] = useContext(Context);
+    const [context, setContext] = useContext(Context) : Context;
     const [page, setPage] = useState(null);
 
     const { slug } = router.query;

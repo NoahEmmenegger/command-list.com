@@ -6,12 +6,13 @@ import DashboardLayout, { Context } from "../components/dashboard/Layout";
 import React, { useEffect } from "react";
 import Head from "next/head";
 import * as ga from "../lib/ga";
+import { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
     useEffect(() => {
-        const handleRouteChange = (url) => {
+        const handleRouteChange = (url: string) => {
             ga.pageview(url);
         };
         router.events.on("routeChangeComplete", handleRouteChange);

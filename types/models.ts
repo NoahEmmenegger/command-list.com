@@ -1,4 +1,4 @@
-export type Post = {
+export type Page = {
     description: string,
     ownerUid: string,
     sections: Section[],
