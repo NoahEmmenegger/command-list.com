@@ -1,11 +1,18 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "../utils/auth";
+import { Registration } from "../types/auth"
 
-export default function Auth({ onclick, title, error }) {
+type AuthProps = {
+    onClick: (n: Registration) => void,
+    title: string,
+    error: string
+}
+
+export default function Auth({ onClick, title, error }: AuthProps) {
     const auth = useAuth();
 
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState("");
     const [providerError, setProviderError] = useState("");
 
@@ -37,14 +44,14 @@ export default function Auth({ onclick, title, error }) {
                 className="mt-10 btn"
                 type="submit"
                 onClick={() => {
-                    onclick({ email, password });
+                    onClick({ email, password });
                 }}
             />
             <div className="mt-20">
                 <p className="text-red-600">{providerError}</p>
                 <button
                     className="provider"
-                    onClick={() => auth.signinWithProvider()}
+                    onClick={() => auth.signinWithProvider("")}
                 >
                     <div className="p-4">
                         <div className="h-7 w-7 relative p-3">

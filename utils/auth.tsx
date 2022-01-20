@@ -27,11 +27,11 @@ export const useAuth = () => {
 };
 
 function useProvideAuth(): AuthType {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<firebase.User | null>(null);
 
     const router = useRouter();
 
-    const signin = (email, password) => {
+    const signin = (email: string, password: string) => {
         console.log(email, password);
         return firebase
             .auth()
@@ -42,7 +42,7 @@ function useProvideAuth(): AuthType {
             });
     };
 
-    const signinWithProvider = (providerName) => {
+    const signinWithProvider = (providerName: string) => {
         let provider = null;
         switch (providerName) {
             case "github":
@@ -62,7 +62,7 @@ function useProvideAuth(): AuthType {
             });
     };
 
-    const signup = (email, password) => {
+    const signup = (email: string, password: string) => {
         return firebase
             .auth()
             .createUserWithEmailAndPassword(email, password)
@@ -77,7 +77,7 @@ function useProvideAuth(): AuthType {
             .auth()
             .signOut()
             .then(() => {
-                setUser(false);
+                setUser(null);
                 router.push("/");
             });
     };
@@ -96,7 +96,7 @@ function useProvideAuth(): AuthType {
             if (user) {
                 setUser(user);
             } else {
-                setUser(false);
+                setUser(null);
             }
         });
 
